@@ -1,0 +1,149 @@
+{
+  "package": "com.application.ejianzhi",
+  "name": "e兼职求职招聘",
+  "versionName": "1.0.2",
+  "versionCode": "8",
+  "minPlatformVersion": "1000",
+  "icon": "/Common/Image/logo.png",
+  "features": [
+    {
+      "name": "system.prompt"
+    },
+    {
+      "name": "system.router"
+    },
+    {
+      "name": "system.shortcut"
+    },
+    {
+      "name": "system.fetch"
+    },
+    {
+      "name": "system.webview"
+    },
+    {
+      "name": "system.storage"
+    },
+    {
+      "name": "system.clipboard"
+    },
+    {
+      "name": "system.share"
+    },
+    {
+      "name": "system.geolocation"
+    },
+    {
+      "name": "system.media"
+    },
+    {
+      "name": "system.request"
+    }
+  ],
+  "permissions": [
+    {
+      "origin": "*"
+    }
+  ],
+  "config": {
+    "logLevel": "debug"
+  },
+  "router": {
+    "entry": "Index",
+    "pages": {
+      "Index": {
+        "component": "index"
+      },
+      "JobDetails": {
+        "component": "index"
+      },
+      "Search": {
+        "component": "index"
+      },
+      "My": {
+        "component": "index"
+      },
+      "Resume": {
+        "component": "index"
+      },
+      "ResumeShow": {
+        "component": "index"
+      },
+      "Deliver": {
+        "component": "index"
+      },
+      "ApplyDetails": {
+        "component": "index"
+      },
+      "Login": {
+        "component": "index"
+      },
+      "Register": {
+        "component": "index"
+      },
+      "Protocol": {
+        "component": "index"
+      },
+      "Forget": {
+        "component": "index"
+      },
+      "About": {
+        "component": "index"
+      },
+      "City": {
+        "component": "index"
+      }
+    }
+  },
+  "display": {
+    "titleBarBackgroundColor": "#37d3cb",
+    "titleBarTextColor": "#ffffff",
+    "menu": true,
+    "pages": {
+      "Index": {
+        "titleBarText": "e兼职",
+        "menu": false
+      },
+      "My": {
+        "titleBarText": "e兼职",
+        "menu": true
+      },
+      "Deliver": {
+        "titleBarText": "我的投递",
+        "menu": false
+      },
+      "ApplyDetails": {
+        "titleBarText": "投递详情",
+        "menu": false
+      },
+      "JobDetails": {
+        "titleBarText": "兼职详情",
+        "menu": false
+      },
+      "Login": {
+        "titleBarText": "登录",
+        "menu": false
+      },
+      "Forget": {
+        "titleBarText": "忘记密码",
+        "menu": false
+      },
+      "Register": {
+        "titleBarText": "注册",
+        "menu": false
+      },
+      "Protocol": {
+        "titleBarText": "用户协议",
+        "menu": false
+      },
+      "City": {
+        "titleBarText": "切换城市",
+        "menu": false
+      },
+      "Search": {
+        "titleBarText": "搜索",
+        "menu": false
+      }
+    }
+  }
+}

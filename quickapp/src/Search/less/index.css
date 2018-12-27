@@ -1,0 +1,69 @@
+.page .flex_page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.search_box {
+  height: 90px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 44px;
+  border-bottom-width: 1px;
+  border-bottom-color: #eeeeee;
+}
+.search_box .search_bg {
+  width: 556px;
+  height: 54px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.search_box .search_bg .search_icon {
+  margin-left: 22px;
+  margin-right: 12px;
+  width: 20px;
+  height: 20px;
+}
+.search_box .search_bg .search_input {
+  flex: 1;
+  font-size: 22px;
+  color: #666666;
+}
+.search_box .seach_btn {
+  font-size: 26px;
+  color: #37d3cb;
+  text-align: left;
+}
+.find_box {
+  display: flex;
+  flex-direction: column;
+}
+.find_box .find_top {
+  padding: 0 44px;
+  margin-top: 32px;
+  font-size: 24px;
+  color: #333333;
+}
+.find_box .find_content {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+.find_box .find_content .fint_item {
+  width: 126px;
+  height: 44px;
+  margin-top: 26px;
+  margin-right: 25px;
+  margin-left: 25px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  font-size: 22px;
+  color: #666666;
+  text-align: center;
+  line-height: 44px;
+}

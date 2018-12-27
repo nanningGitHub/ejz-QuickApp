@@ -1,0 +1,214 @@
+.page .flex_page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(242, 248, 255);
+}
+.box{
+    display: flex;
+    flex-direction: column;
+    padding: 16px 12px 0 12px;
+    .header{
+        width: 100%;
+        height: 200px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left:32px; 
+        padding-right: 42px;
+        .head{
+            @size:143px;
+            height: @size;
+            width: @size;
+            background-image: url(../img/rahmen_icon.png);
+            .head_icon{
+                height: @size;
+                width: @size;
+                border-radius: @size*0.5;
+            }
+        }
+        .head_text{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 480px;
+            .head_text_text{
+                font-size: 24px;
+                color: rgb(170, 170, 170);
+            }
+            .into_icon{
+                width: 14px;
+                height: 27px;
+            }
+        }
+    }
+    .reminder_box{
+        height:82px;
+        .reminder{
+            color: rgb(55, 211, 203);
+            font-size: 24px;
+        }
+    }
+    .basic,.education,.location,.relation,.expectjob{
+        margin-bottom: 16px;
+    }
+    .experience{
+        padding:  0 44px;
+        height: 208px;
+    }
+    .module{
+        width: 100%;
+        border-radius:10px;
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        flex-direction: column; 
+        .item{
+            height: 86px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            .xinghao{
+                color: rgb(55, 211, 203);
+                font-size: 28px;
+                margin-left: 14px;
+                margin-right: 10px;
+            }
+            .hidden{
+                visibility:hidden;
+            }
+            .item_text{
+                width: 150px;
+                font-size: 28px;
+                color: rgb(51, 51, 51);
+            }
+            .item_input{
+                width: 496px;
+                font-size: 28px;
+                color: rgb(51, 51, 51); 
+            }
+            .expectjob_title_text{
+                color: rgb(55, 211, 203);
+                font-size: 24px;
+            }
+
+            // 性别的区分开始
+            .picker{
+                height: 100%;
+                width: 496px;
+                color: rgb(51, 51, 51);
+                font-size: 28px;
+            }
+            // 性别的区分结束
+            .line{
+                height: 1px;
+                width: 100%;
+                background-color: rgb(219, 237, 255);  
+            }
+        }
+        .location_box{
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           padding-right: 32px; 
+           .location_box_item{ 
+               height: 100%;
+               width: 182px;
+               display: flex;
+               align-items: center;
+               justify-content: space-between;
+            //    .xinghao{
+            //     color: rgb(55, 211, 203);
+            //     font-size: 28px;
+            //     margin-left: 14px;
+            //     margin-right: 10px;
+            //    }
+               .picker_location{
+                    width: 90px;
+                    height: 100%;
+                    font-size: 28px;
+                    color: rgb(51, 51, 51);
+               }
+               .down_img{
+                   width: 22px;
+                   height: 12px;
+               }
+           }
+        } 
+        // 工作经验
+        .experience_title{
+            height: 80px;
+            width: 100%;
+            font-size: 28px;
+            color: rgb(51, 51, 51);
+        }
+        .experience_text{
+            height: 102px;
+            width: 100%;
+            color: rgb(51, 51, 51);
+            font-size: 24px;
+            placeholder-color:rgb(51, 51, 51);
+        }
+       
+    }
+    // 期望职位 
+    .expectjob{
+       .expectjob_list{
+           height: 196px;
+           width: 100%;
+           display: flex;
+           justify-content: space-between;
+           flex-wrap: wrap;
+           padding: 0 30px;
+           .expectjob_item{
+               margin-top: 30px;
+               width: 140px;
+               height: 50px;
+               border-radius:50px;
+               background-color: #cccccc;
+               color: #ffffff; 
+               font-size: 24px;
+               text-align: center;
+           }
+           .expectjob_item_active{
+               background-color: rgb(55, 211, 203);
+           }
+       }
+    }
+    // 简历协议
+    .agreement{
+        height: 100px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .agreement_icon{
+            height:26px ;
+            width: 26px;
+        }
+        .agreement_text{
+            font-size: 24px;
+            color: rgb(51, 51, 51);
+            margin-left:14px;
+            margin-right: 12px; 
+        }
+        .agreement_a{
+            font-size: 24px;
+            color: rgb(55, 211, 203);
+        }
+    }
+}
+.save_box{
+    height: 98px;
+    width: 100% ;
+    background-color: rgb(55, 211, 203);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .save_text{
+        color: rgb(255, 255, 255);
+         font-size: 36px;
+    }
+}

@@ -1,0 +1,378 @@
+<template>
+    <div class="page">
+        <div class="flex_page">
+            <div class="box">
+                <div class="box_inner">
+                    <div class="job_item">
+                        <image src='../Common/Component/Joblist/img/offline/{{jobOffline.image}}' class="job_item_icon">
+                        </image>
+                        <div class="job_itme_box">
+                            <text class="job_item_name">{{jobOffline.title}}</text>
+                            <div class="job_item_box2">
+                                <div class="job_item_address">
+                                    <image src="../Common/Component/Joblist/img/job_address_icon.png" class="job_item_address_icon"></image>
+                                    <text class="job_item_address_text">{{jobOffline.address}}</text>
+                                </div>
+                                <div>
+                                    <text class="job_item_wage">{{jobOffline.salaryStr}}</text>
+                                    <text class="job_item_unit">RMB/{{jobOffline.salaryUnitStr}}</text>
+                                </div>
+                            </div>
+                            <div class="job_item_box3">
+                                <div class="job_item_time">
+                                    <image class="job_item_time_icon" src="../Common/Component/Joblist/img/job_time_icon.png"></image>
+                                    <text class="job_item_time_text">{{jobOffline.startDate}}~{{jobOffline.endDate}}</text>
+                                </div>
+                                <div class="position">
+                                    <text class="position_text">{{jobOffline.jobTypeStr}}-{{jobOffline.settlementTypeStr}}结</text>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="demand">
+                        <div class="demand_top">
+                            <div class="demand_top_left">
+                                <image src="{{demandicon}}" class="demand_top_icon"></image>
+                                <text class="demand_top_text">招聘要求</text>
+                            </div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="demand_box">
+                            <div class="demand_box_item">
+                                <text class="demand_item_text_title">兼职类型 :</text>
+                                <text class="demand_item_text">{{jobOffline.jobTypeStr}}</text>
+                            </div>
+                            <div class="demand_box_item">
+                                <text class="demand_item_text_title">招聘人数 :</text>
+                                <text class="demand_item_text">{{jobOffline.needNumber}}</text>
+                            </div>
+                            <div class="demand_box_item">
+                                <text class="demand_item_text_title">结算方式 :</text>
+                                <text class="demand_item_text">{{jobOffline.settlementTypeStr}}结</text>
+                            </div>
+                            <div class="demand_box_item">
+                                <text class="demand_item_text_title">性别要求 :</text>
+                                <text class="demand_item_text">{{jobOffline.genderLimit}}</text>
+                            </div>
+                            <!-- <div class="demand_box_item">
+                                <text class="demand_item_text_title">身份要求 :</text>
+                                <text class="demand_item_text">不限</text>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="jobContent">
+                        <div class="jobContent_top">
+                            <div class="jobContent_top_left">
+                                <image src="{{jobContenticon}}" class="jobContent_top_icon"></image>
+                                <text class="jobContent_top_text">工作内容 </text>
+                            </div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="jobContent_box">
+                            <text class="jobContent_box">{{jobOffline.content}}</text>
+                        </div>
+                    </div>
+                    <div class="jobTime">
+                        <div class="jobTime_top">
+                            <div class="jobTime_top_left">
+                                <image src="{{jobTimeicon}}" class="jobTime_top_icon"></image>
+                                <text class="jobTime_top_text">工作时间 </text>
+                            </div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="jobTime_box">
+                            <text class="jobframe">工作时段：10:00-19:00</text>
+                            <text class="jobdata">工作日期：{{jobOffline.startDate}}~{{jobOffline.endDate}}</text>
+                        </div>
+                    </div>
+                    <div class="jobSite">
+                        <div class="jobSite_top">
+                            <div class="jobSite_top_left">
+                                <image src="{{jobSiteicon}}" class="jobSite_top_icon"></image>
+                                <text class="jobSite_top_text">工作地址 </text>
+                            </div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="jobSite_box">
+                            <text class="jobSite_box_text">{{jobOffline.address}}</text>
+                        </div>
+                        <!-- <div class="map">
+                            <div class='map_border'>
+                                <map class="map_map" scale='16' latitude='{{jobOffline.latitude}}' longitude='{{jobOffline.longitude}}'></map>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="enterprise">
+                        <div class="enterprise_top">
+                            <div class="enterprise_top_left">
+                                <image src="{{enterpriseicon}}" class="enterprise_top_icon"></image>
+                                <text class="enterprise_top_text">发布企业 </text>
+                            </div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="enterprise_box">
+                            <div class="enterprise_message">
+                                <image src="{{enterprise.logoUrl}}" class="enterprise_message_loge"></image>
+                                <div class="enterprise_message_box">
+                                    <text class="enterprise_message_name">{{enterprise.name}}</text>
+                                    <text class="enterprise_message_type">{{enterprise.industry}}</text>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="welfare">
+                        <div class="welfare_top">
+                            <div class="welfare_top_left">
+                                <image src="{{welfareicon}}" class="welfare_top_icon"></image>
+                                <text class="welfare_top_text">兼职福利 </text>
+                            </div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="welfare_box">
+                            <text class="welfare_box_item" for="{{welfare}}" show="{{$item.type}}">{{$item.text}}</text>
+                        </div>
+                    </div>
+                    <div class="apply">
+                        <div class="apply_top">
+                            <div class="apply_top_left">
+                                <image src="{{applyicon}}" class="apply_top_icon"></image>
+                                <text class="apply_top_text">报名同学 </text>
+                            </div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="apply_box">
+                            <text class="apply_box_text">{{jobOffline.deliverTimes}}人</text>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom_hint">
+                    <text class="bottom_hint_text">已经到底啦~</text>
+                </div>
+            </div>
+            <div class="box_bottom">
+                <div class="box_bottom_left">
+                    <div class="share" onclick="share">
+                        <image src="img/share_icon.png" class="share_icon"></image>
+                        <text class="box_bottom_text">分享</text>
+                    </div>
+                    <div class="consult" onclick="consult">
+                        <image src="img/consult_icon.png" class="consult_icon"></image>
+                        <text class="box_bottom_text">咨询</a>
+                    </div>
+                </div>
+                <div class="box_bottom_line"></div>
+
+                <div class="box_bottom_right" onclick="deliver">
+                    <text class="deliver_text {{isdeliver?'deliver_text_later':''}}">{{ isdeliver?'已投递':'投递简历'}}
+                    </text>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</template>
+<style lang="less">
+    @import './less/index.less';
+</style>
+<script>
+    import {
+        getJobDetails,
+        getEnterprise,
+        deliver,
+        getisdeliver
+    } from '../Common/Api/JobDetails'
+
+    import {
+        imgLogo,
+        formatTime,
+        genderLimit,
+        companyLogo
+    } from '../Common/utils/utils.js'
+
+    export default {
+        data: {
+            demandicon: 'img/demand_top_icon.png',
+            jobContenticon: 'img/jobContent_icon.png',
+            jobTimeicon: 'img/jobTime_icon.png',
+            jobSiteicon: 'img/jobSite_icon.png',
+            enterpriseicon: 'img/enterprise_icon.png',
+            enterpriseLogo: 'img/head_icon.png',
+            welfareicon: 'img/jobWelfare_icon.png',
+            applyicon: 'img/jobApply_icon.png',
+            JobOfflineId: '',  //兼职ID
+            jobOffline: {},
+            welfare: [{
+                text: "实习证明",
+                type: false,
+            }, {
+                text: "包住宿",
+                type: false,
+            }, {
+                text: "包餐饮",
+                type: false,
+            }],
+            enterprise: {},
+            isLogin: false,
+            token: '',
+            isdeliver: false,   //是否投递过简历
+            markers: [{
+                latitude: '',
+                longitude: '',
+                coordType: 'wgs84',
+                iconPath: '../Common/Component/Joblist/img/job_address_icon.png',
+                width: "100px",
+                callout: {
+                    content: "公司地址",
+                    padding: "20px 5px 20px 5px",
+                    borderRadius: "20px",
+                    textAlign: "left",
+                    display: "always"
+                }
+            }]
+        },
+        onShow() {
+            var that = this;
+            this.$app.$def.storage.get({
+                key: 'user',
+                success: function (data) {
+                    if (data) {
+                        that.isLogin = true;
+                        that.token = JSON.parse(data).dataMap.token;
+                        that.getisdeliver()
+                    } else {
+                        that.isLogin = false;
+                    }
+                },
+                fail: function (data, code) {
+                    console.log(data)
+                }
+            })
+            this.getJobDetails()
+        },
+        getJobDetails() {
+            getJobDetails(this.JobOfflineId)
+                .then((data) => {
+                    if (data.code !== 0) {
+                        this.$app.$def.prompt.showToast({
+                            message: data.msg
+                        })
+                    } else {
+                        let jobOffline = data.dataMap.jobOffline;
+                        jobOffline.image = imgLogo(jobOffline.jobSubtypeId);
+                        jobOffline.startDate = formatTime(jobOffline.startDate, 'Y.M.D');
+                        jobOffline.endDate = formatTime(jobOffline.endDate, 'Y.M.D');
+                        jobOffline.genderLimit = genderLimit(jobOffline.genderLimit);
+                        jobOffline.jobTypeStr = jobOffline.jobTypeStr.split(',')[0];
+                        this.welfare[0].type = jobOffline.zhengMing;
+                        this.welfare[1].type = jobOffline.baoZhu;
+                        this.welfare[2].type = jobOffline.baoChi;
+                        this.jobOffline = jobOffline;
+                        this.getEnterprise(jobOffline.enterpriseId);
+                        this.markers[0].latitude = jobOffline.latitude;
+                        this.markers[0].longitude = jobOffline.longitude;
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+        },
+        getEnterprise(enterpriseId) {
+            getEnterprise(enterpriseId)
+                .then((data) => {
+                    if (data.code !== 0) {
+                        this.$app.$def.prompt.showToast({
+                            message: data.msg
+                        })
+                    } else {
+                        data.dataMap.enterprise.logoUrl = companyLogo(data.dataMap.enterprise.logoUrl);
+                        this.enterprise = data.dataMap.enterprise
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+        },
+        consult() {
+            if (!this.isdeliver) {
+                this.$app.$def.prompt.showToast({
+                    message: "投递后才可以联系企业"
+                })
+            } else {
+                this.$app.$def.router.push({
+                    uri: 'tel:' + this.jobOffline.mobile,
+                })
+            }
+        },
+        share() {
+            this.$app.$def.share.share({
+                type: 'text/html',
+                data: 'http://www.ejzhi.com/apph5/app/app_apk.html',
+                success: function (data) {
+                    // console.log('handling success')
+                },
+                fail: function (data, code) {
+                    console.log(`handling fail, code = ${code}`)
+                }
+            })
+        },
+        getisdeliver() {   //判断用户是否投递过
+            getisdeliver(this.token, this.JobOfflineId)
+                .then((data) => {
+                    if (data.code !== 0) {
+                        this.$app.$def.prompt.showToast({
+                            message: data.msg
+                        })
+                    } else {
+                        this.isdeliver = data.dataMap.isdeliver;
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+        },
+        deliver() {
+            if (this.isLogin) {
+                if (this.isdeliver) {
+                    this.$app.$def.prompt.showToast({
+                        message: "您已经投递过了"
+                    })
+                } else {
+                    deliver(this.token, this.JobOfflineId)
+                        .then((data) => {
+                            if (data.code === 1) {
+                                this.$app.$def.prompt.showToast({
+                                    message: data.msg
+                                })
+                            } else if (data.code === 0) {
+                                this.$app.$def.prompt.showToast({
+                                    message: "您已投递成功"
+                                })
+                                this.isdeliver = true;
+                            } else if (data.code === 2) {
+                                this.$app.$def.router.push({
+                                    uri: '/Resume'
+                                })
+                            } else {
+                                return
+                            }
+                        })
+                        .catch((err) => {
+                            this.$app.$def.prompt.showToast({
+                                message: "请检查您的网络"
+                            })
+                        })
+                }
+            } else {
+                this.$app.$def.router.push({
+                    uri: '/Login'
+                })
+            }
+        }
+    }
+</script>

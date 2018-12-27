@@ -1,0 +1,185 @@
+.page .flex_page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.flex_page_top {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    width: 100%;
+    height: 232px;
+    display: flex;
+    justify-content: flex-start;
+    padding: 26px 0px 26px 48px;
+    border-bottom-width: 1px;
+    border-bottom-color: #eeeeee;
+    .head_box {
+        width: 180px;
+        height: 180px;
+        margin-right: 48px; 
+        .headerurl {
+            width: 180px;
+            height: 180px;
+            border-radius: 90px;
+        }
+    }
+    .user_box {
+        width: 436px;
+        height: 180px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .user_name_box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .user_name {
+                color: #333333;
+                font-size: 44px;
+            }
+            .quit {
+                width: 36px;
+                height: 42px;
+            }
+        }
+        .user_data {
+            display: flex;
+            justify-content: space-between;
+            height: 90px;
+            width: 100%;
+            .resume {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 124px;
+                height: 90px;
+                .resume_nub {
+                    font-size: 34px;
+                    color: #333333;
+                }
+            }
+            .wallet {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 90px;
+                width: 240px;
+                .wallet_nub {
+                    .wallet_nub_text {
+                        font-size: 34px;
+                        color: #37d3cb;
+                    }
+                    .yuan {
+                        font-size: 20px;
+                        color: #333333;
+                    }
+                }
+            }
+        }
+    }
+    .notLogin {
+        width: 380px;
+        height: 180px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        .login_text {
+            font-size: 44px;
+            color: #333333;
+            text-align: left;
+        }
+    }
+}
+
+.deliver_box {
+    height: 232px;
+    width: 100%;
+    border-bottom-width: 1px;
+    border-bottom-color: #eeeeee;
+    display: flex;
+    flex-direction: column;
+    .deliver_top {
+        height: 80px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 46px;
+        margin-bottom: 10px;
+        .deliver_top_text {
+            font-size: 30px;
+            color: #333333;
+        }
+    }
+    .deliver_bottom {
+        padding: 0 70px;
+        display: flex;
+        justify-content: space-between;
+        .deliver_item {
+            height: 110px;
+            width: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .deliver_item_icon {
+                width: 60px;
+                height: 60px;
+                background-size: 100% 100%;
+                margin-bottom: 24px;
+            }
+            .deliver_item_text {
+                font-size: 22px;
+                color: #666666;
+            }
+        }
+    }
+}
+
+.tabbar_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* box-shadow: 10px 10px 5px #888888; */
+    border-top-width: 1px;
+    border-top-color: #eeeeee;
+    height: 98px;
+    width: 100%;
+    .tabbar_index {
+        margin-left: 146px;
+        width: 44px;
+        height: 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .index_icon {
+            width: 44px;
+            height: 44px;
+        }
+        .index_text {
+            font-size: 20px;
+            color: #888888;
+        }
+    }
+    .tabbar_my {
+        margin-right: 146px;
+        width: 44px;
+        height: 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .my_icon {
+            width: 44px;
+            height: 44px;
+        }
+        .my_text {
+            font-size: 20px;
+            color: #888888;
+        }
+    }
+}

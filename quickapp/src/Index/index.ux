@@ -1,0 +1,255 @@
+<!-- <import name="joblist" src="../Common/Component/Joblist/index"></import> -->
+<template>
+  <div class="page">
+    <div class="flex_page">
+      <div class="search">
+        <div class="search_box">
+          <div class="city" onclick="intoCity">
+            <text class="city_name">{{value}}</text>
+            <image class="city_more" src='{{cityicon}}'></image>
+          </div>
+          <div class="search_btn" onclick="intoSearch">
+            <image src='{{searchicon}}' class="search_icon"></image>
+            <text class="search_text">{{searchkey}}</text>
+          </div>
+        </div>
+      </div>
+      <!-- <joblist key="{{key}}" jobofflinepage="{{jobOfflinePage}}" searchkeytext="{{searchkey}}"></joblist> -->
+      <list class="content" style="flex: 1;" onscrollbottom="loadMoreData">
+        <block for="{{jobOfflinePage.dataList}}">
+          <list-item type="product" class="job_item" onclick="openJobDetails($item.id)">
+            <image src='../Common/Component/Joblist/img/offline/{{$item.image}}' class="
+                job_item_icon">
+            </image>
+            <div class="job_itme_box">
+              <text class="job_item_name">{{$item.title}}</text>
+              <div class="job_item_box2">
+                <div class="job_item_address">
+                  <image src="../Common/Component/Joblist/img/job_address_icon.png" class="job_item_address_icon"></image>
+                  <text class="job_item_address_text">{{$item.address}}</text>
+                </div>
+                <div>
+                  <text class="job_item_wage">{{$item.salaryStr}}</text>
+                  <text class="job_item_unit">RMB/{{$item.salaryUnitStr}}</text>
+                </div>
+              </div>
+              <div class="job_item_box3">
+                <div class="job_item_time">
+                  <image class="job_item_time_icon" src="../Common/Component/Joblist/img/job_time_icon.png"></image>
+                  <text class="job_item_time_text">{{$item.startDate}}~{{$item.endDate}}</text>
+                </div>
+                <div class="position">
+                  <text class="position_text">{{$item.jobTypeStr.split(',')[0]}}-{{$item.settlementTypeStr}}结</text>
+                </div>
+              </div>
+            </div>
+          </list-item>
+        </block>
+        <!-- 加载更多，type属性自定义命名为loadMore -->
+        <list-item type="loadMore" class="load-more">
+          <progress show="{{hasMoreData}}" type="circular"></progress>
+          <text show="{{hasMoreData}}">加载更多</text>
+          <text show="{{!hasMoreData}}">没有更多了~</text>
+        </list-item>
+      </list>
+      <div class="tabbar_box">
+        <div class="tabbar_index">
+          <image class="index_icon" src="{{indexicon}}"></image>
+          <text class="index_text">首页</text>
+        </div>
+        <div class="tabbar_my" onclick='clickMy()'>
+          <image class="my_icon" src="{{myicon}}"></image>
+          <text class="my_text">我的</text>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style lang="less">
+  @import './less/index.css';
+</style>
+<script>
+  import {
+    getCity,
+    getCityName
+  } from '../Common/Api/index'
+
+  import {
+    getJobList
+  } from '../Common/Api/joblist'
+
+  import {
+    imgLogo,
+    formatTime
+  } from '../Common/utils/utils.js'
+
+  export default {
+    data() {
+      return {
+        cityicon: 'img/down_icon.png',
+        searchicon: 'img/search_icon.png',
+        indexicon: 'img/index_active_icon.png',
+        myicon: 'img/my_icon.png',
+        searchkey: '',
+        cityId: '',
+        value: "北京",
+        key: '',
+        LngitudeAndLatitude: '',
+        pageNo: 1,
+        jobOfflinePage: {
+          dataList: []
+        },
+        hasMoreData: 'true'
+      }
+    },
+    onShow() {
+      var that = this;
+      this.jobOfflinePage.dataList = [];
+      this.pageNo = 1;
+      this.hasMoreData = true;
+      this.$app.$def.storage.get({
+        key: 'searchkey',
+        success: function (data) {
+          if (!data) {
+
+          } else {
+            that.searchkey = JSON.parse(data).searchkey;
+          }
+        },
+        fail: function (data, code) {
+          console.log(`handling fail, code = ${code}`)
+        }
+      })
+
+
+      this.$app.$def.storage.get({
+        key: 'city',
+        success: function (data) {
+          if (!data) {
+            that.getJobList()
+            that.getgeolocation()
+          } else {
+            that.value = JSON.parse(data).cityname;
+            that.key = JSON.parse(data).cityid;
+            that.getJobList()
+          }
+        },
+        fail: function (data, code) {
+          console.log(`handling fail, code = ${code}`)
+        }
+      })
+
+
+    },
+
+
+    // 获取经纬度开始
+    getgeolocation() {
+      var that = this;
+      this.$app.$def.geolocation.getLocation({
+        success: function (data) {
+          that.LngitudeAndLatitude = data.longitude + ',' + data.latitude
+          that.getCityName()
+        },
+        fail: function (data, code) {
+          console.log(`handling fail, code = ${code}`)
+        }
+      })
+    },
+    // 获取经纬度结束
+
+    //获取城市名字和城市ID开始
+    getCityName() {
+      getCityName(this.LngitudeAndLatitude)
+        .then((data) => {
+          if (data.code !== 0) {
+
+          } else {
+            this.$app.$def.storage.set({
+              key: 'city',
+              value: {
+                cityid: data.dataMap.cityId,
+                cityname: data.dataMap.cityName
+              },
+              success: function (data) {
+                console.log(data)
+              },
+              fail: function (data, code) {
+                console.log(`handling fail, code = ${code}`)
+              }
+            })
+            this.value = data.dataMap.cityName;
+            this.key = data.dataMap.cityId;
+            this.getJobList()
+          }
+        })
+        .catch((err) => {
+          this.$app.$def.prompt.showToast({
+            message: "请检查您的网络"
+          })
+        })
+    },
+    // 获取城市名字和城市ID开始
+    getJobList() {
+      getJobList(this.key, this.pageNo, this.searchkey)
+        .then((data) => {
+          if (data.code !== 0) {
+            this.$app.$def.prompt.showToast({
+              message: data.msg
+            })
+          } else {
+            let jobOfflinePage = data.dataMap.jobOfflinePage;
+            let BeforeJobOfflinePage = this.jobOfflinePage;
+            if (jobOfflinePage.dataList.length < 15) {
+              this.hasMoreData = false
+            }
+
+            jobOfflinePage.dataList.map(item => {
+              item.image = imgLogo(item.jobSubtypeId);
+              item.startDate = formatTime(item.startDate, 'Y.M.D');
+              item.endDate = formatTime(item.endDate, 'Y.M.D');
+            })
+            jobOfflinePage.dataList = [...BeforeJobOfflinePage.dataList, ...jobOfflinePage.dataList]
+
+            this.jobOfflinePage = jobOfflinePage;
+          }
+        })
+        .catch((err) => {
+          this.$app.$def.prompt.showToast({
+            message: "请检查您的网络"
+          })
+        })
+    },
+    loadMoreData() {
+      this.pageNo++
+      this.getJobList()
+    },
+    openJobDetails(JobOfflineId) {
+      this.$app.$def.router.push({
+        uri: 'JobDetails',
+        params: {
+          JobOfflineId: JobOfflineId
+        }
+      })
+    },
+    intoCity() {
+      this.$app.$def.router.push({
+        uri: '/City',
+        params: {
+          cityname: this.value
+        }
+      })
+    },
+    intoSearch() {
+      this.$app.$def.router.push({
+        uri: '/Search'
+      })
+    },
+    clickMy() {
+      this.$app.$def.router.replace({
+        uri: '/My'
+      })
+    }
+  }
+</script>

@@ -1,0 +1,89 @@
+<template>
+    <div class="page">
+        <div class="flex_page">
+            <div class="login_box">
+                <div class="phone_box">
+                    <input type="number" value="{{phoneNumber}}" placeholder="请输入11位手机号码" class="phone_nub" onchange="onInputPhone" />
+                </div>
+                <div class="password_box">
+                    <input type="password" value="{{password}}" placeholder="请输入密码" class="password_nub" onchange="onInputPassword" />
+                </div>
+                <div class="login_btn" onclick="login">
+                    <text class="login_btn_text">登陆</text>
+                </div>
+                <div class="forget_register">
+                    <text class="forget_text" onclick="intoForget">忘记密码?</text>
+                    <text class="register_text" onclick="intoRegister">注册账号</text>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<style lang="less">
+    @import './less/index.css';
+</style>
+<script>
+    import router from '@system.router'
+
+    import {
+        login
+    } from '../Common/Api/user'
+
+    export default {
+        data: {
+            phoneNumber: '',
+            password: ''
+        },
+        intoForget() {
+            router.push({
+                uri: '/Forget'
+            })
+        },
+        intoRegister() {
+            router.push({
+                uri: '/Register'
+            })
+        },
+        onInputPhone({
+            value
+        }) {
+            this.phoneNumber = value;
+        },
+        onInputPassword({
+            value
+        }) {
+            this.password = value;
+        },
+        login() {
+            let RegExphone = /^[1][3,4,5,7,8,9][0-9]{9}$/;
+
+            if (!RegExphone.test(this.phoneNumber)) {
+                this.$app.$def.prompt.showToast({
+                    message: '请输入手机号码'
+                })
+            } else if (this.password === '') {
+                this.$app.$def.prompt.showToast({
+                    message: '请输入密码'
+                })
+            } else {
+                login(this.phoneNumber, this.password)
+                    .then((data) => {
+                        if (data.code !== 0) {
+                            this.$app.$def.prompt.showToast({
+                                message: data.msg
+                            })
+                        } else {
+                            // let Length = router.getLength()
+                            // router.back(Length)
+                            router.back()
+                        }
+                    })
+                    .catch((err) => {
+                        this.$app.$def.prompt.showToast({
+                            message: "请检查您的网络"
+                        })
+                    })
+            }
+        }
+    }
+</script>

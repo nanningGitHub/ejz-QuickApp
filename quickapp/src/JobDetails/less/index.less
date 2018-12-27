@@ -1,0 +1,529 @@
+.page .flex_page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .box {
+        flex: 1;
+        background-color: #f2f2f2;
+        padding: 16px 12px 0px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        .box_inner {
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            .job_item {
+                background-color: #ffffff;
+                height: 160px;
+                border-bottom-color: #eeeeee;
+                border-bottom-width: 1px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                .job_item_icon {
+                    width: 80px;
+                    height: 80px;
+                    margin-left: 50px;
+                    margin-right: 50px;
+                }
+                .job_itme_box {
+                    width: 520px;
+                    height: 110px;
+                    display: flex;
+                    flex-direction: column;
+                    align-self: center;
+                    .job_item_name {
+                        color: #333333;
+                        font-size: 28px;
+                        text-align: left;
+                    }
+                    .job_item_box2 {
+                        display: flex;
+                        justify-content: space-between;
+                        .job_item_address {
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            .job_item_address_icon {
+                                width: 22px;
+                                width: 18px;
+                                margin-right: 14px;
+                            }
+                            .job_item_address_text {
+                                width: 200px;
+                                lines: 1;
+                                text-overflow: ellipsis;
+                                color: #888888;
+                                font-size: 22px;
+                            }
+                        }
+                        .job_item_wage {
+                            color: #37d3cb;
+                            font-size: 40px;
+                        }
+                        .job_item_unit {
+                            margin-left: 12px;
+                            font-size: 28px;
+                            color: #37d3cb;
+                        }
+                    }
+                    .job_item_box3 {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        .job_item_time {
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            .job_item_time_icon {
+                                width: 18px;
+                                width: 18px;
+                                margin-right: 12px;
+                            }
+                            .job_item_time_text {
+                                font-size: 22px;
+                                color: #888888;
+                            }
+                        }
+                        .position {
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            background-color: #eeeeee;
+                            height: 32px;
+                            border-radius: 32px;
+                            padding: 0 10px;
+                            .position_text {
+                                color: #888888;
+                                font-size: 20px;
+                                background-color: transparent;
+                            }
+                        }
+                    }
+                }
+            }
+            .demand {
+                display: flex;
+                flex-direction: column;
+                .demand_top {
+                    height: 70px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .demand_top_left {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        .demand_top_icon {
+                            height: 26px;
+                            width: 28px;
+                            margin-right: 12px;
+                            margin-left: 23px;
+                        }
+                        .demand_top_text {
+                            font-size: 28px;
+                            color: #333333;
+                        }
+                    }
+                    .line {
+                        width: 530px;
+                        height: 1px;
+                        background-color: #eeeeee;
+                    }
+                }
+                .demand_box {
+                    display: flex;
+                    flex-direction: column;
+                    .demand_box_item {
+                        height: 42px;
+                        width: 100%;
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        .demand_item_text_title {
+                            color: #888888;
+                            font-size: 26px;
+                            margin-left: 24px;
+                            margin-right: 26px;
+                        }
+                        .demand_item_text {
+                            color: #888888;
+                            font-size: 26px;
+                        }
+                    }
+                }
+            }
+            .jobContent {
+                display: flex;
+                flex-direction: column;
+                .jobContent_top {
+                    height: 70px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .jobContent_top_left {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        .jobContent_top_icon {
+                            height: 26px;
+                            width: 21px;
+                            margin-right: 14px;
+                            margin-left: 26px;
+                        }
+                        .jobContent_top_text {
+                            font-size: 28px;
+                            color: #333333;
+                        }
+                    }
+                    .line {
+                        width: 530px;
+                        height: 1px;
+                        background-color: #eeeeee;
+                    }
+                }
+                .jobContent_box {
+                    .jobContent_box {
+                        padding: 0 22px;
+                        color: #333333;
+                        font-size: 26px;
+                    }
+                }
+            }
+            .jobTime {
+                display: flex;
+                flex-direction: column;
+                .jobTime_top {
+                    height: 70px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .jobTime_top_left {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        .jobTime_top_icon {
+                            height: 26px;
+                            width: 26px;
+                            margin-right: 12px;
+                            margin-left: 23px;
+                        }
+                        .jobTime_top_text {
+                            font-size: 28px;
+                            color: #333333;
+                        }
+                    }
+                    .line {
+                        width: 530px;
+                        height: 1px;
+                        background-color: #eeeeee;
+                    }
+                }
+                .jobTime_box {
+                    display: flex;
+                    flex-direction: column;
+                    .jobframe {
+                        height: 42px;
+                        display: flex;
+                        align-items: center;
+                        margin-left: 24px;
+                        font-size: 26px;
+                        color: #333333;
+                    }
+                    .jobdata {
+                        height: 42px;
+                        display: flex;
+                        align-items: center;
+                        margin-left: 24px;
+                        font-size: 26px;
+                        color: #333333;
+                    }
+                }
+            }
+            .jobSite {
+                display: flex;
+                flex-direction: column;
+                .jobSite_top {
+                    height: 70px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .jobSite_top_left {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        .jobSite_top_icon {
+                            height: 29px;
+                            width: 24px;
+                            margin-right: 12px;
+                            margin-left: 24px;
+                        }
+                        .jobSite_top_text {
+                            font-size: 28px;
+                            color: #333333;
+                        }
+                    }
+                    .line {
+                        width: 530px;
+                        height: 1px;
+                        background-color: #eeeeee;
+                    }
+                }
+                .jobSite_box {
+                    margin-bottom: 12px;
+                    .jobSite_box_text {
+                        padding: 0 24px;
+                        display: flex;
+                        align-items: center;
+                        font-size: 26px;
+                        color: #888888;
+                    }
+                }
+                .map {
+                    display: flex;
+                    justify-content: center;
+                    .map_border {
+                        width: 678px;
+                        height: 280px;
+                        border-radius: 10px;
+                        border-width: 3px;
+                        border-color: #f1f1f1;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        .map_map {
+                            border-radius: 10px;
+                            border-width: 3px;
+                            border-color: #f1f1f1;
+                            width: 658px;
+                            height: 260px;
+                        }
+                    }
+                }
+            }
+            .enterprise {
+                display: flex;
+                flex-direction: column;
+                .enterprise_top {
+                    height: 70px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .enterprise_top_left {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        .enterprise_top_icon {
+                            height: 29px;
+                            width: 26px;
+                            margin-right: 12px;
+                            margin-left: 23px;
+                        }
+                        .enterprise_top_text {
+                            font-size: 28px;
+                            color: #333333;
+                        }
+                    }
+                    .line {
+                        width: 530px;
+                        height: 1px;
+                        background-color: #eeeeee;
+                    }
+                }
+                .enterprise_box {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .enterprise_message {
+                        width: 678px;
+                        height: 126px;
+                        border-radius: 10px;
+                        background-color: #f8f8f8;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        .enterprise_message_loge {
+                            margin: 24px;
+                            height: 80px;
+                            width: 80px;
+                        }
+                        .enterprise_message_box {
+                            display: flex;
+                            flex-direction: column;
+                            .enterprise_message_name {
+                                font-size: 26px;
+                                color: #333333;
+                            }
+                            .enterprise_message_type {
+                                font-size: 26px;
+                                color: #888888;
+                            }
+                        }
+                    }
+                }
+            }
+            .welfare {
+                display: flex;
+                flex-direction: column;
+                .welfare_top {
+                    height: 70px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .welfare_top_left {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        .welfare_top_icon {
+                            height: 24px;
+                            width: 26px;
+                            margin-right: 12px;
+                            margin-left: 23px;
+                        }
+                        .welfare_top_text {
+                            font-size: 28px;
+                            color: #333333;
+                        }
+                    }
+                    .line {
+                        width: 530px;
+                        height: 1px;
+                        background-color: #eeeeee;
+                    }
+                }
+                .welfare_box {
+                    display: flex;
+                    justify-content: flex-start;
+                    .welfare_box_item {
+                        margin-left: 20px;
+                        margin-right: 20px;
+                        width: 132px;
+                        height: 36px;
+                        border-color: #37d3cb;
+                        border-width: 2px;
+                        border-radius: 36px;
+                        font-size: 24px;
+                        color: #37d3cb;
+                        line-height: 36px;
+                        text-align: center;
+                    }
+                }
+            }
+            .apply {
+                display: flex;
+                flex-direction: column;
+                .apply_top {
+                    height: 70px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .apply_top_left {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        .apply_top_icon {
+                            height: 30px;
+                            width: 24px;
+                            margin-right: 12px;
+                            margin-left: 23px;
+                        }
+                        .apply_top_text {
+                            font-size: 28px;
+                            color: #333333;
+                        }
+                    }
+                    .line {
+                        width: 530px;
+                        height: 1px;
+                        background-color: #eeeeee;
+                    }
+                }
+                .apply_box {
+                    .apply_box_text {
+                        padding-left: 24px;
+                        padding-bottom: 12px;
+                        font-size: 26px;
+                        color: #888888;
+                    }
+                }
+            }
+        }
+        .bottom_hint {
+            height: 82px;
+            width: 100%;
+            justify-content: center;
+            .bottom_hint_text {
+                font-size: 24px;
+                color: #888888;
+            }
+        }
+    }
+    .box_bottom {
+        height: 100px;
+        width: 100%;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .box_bottom_left {
+            width: 49%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 40px;
+            .box_bottom_text {
+                font-size: 30px;
+                color: #333333;
+            }
+            .share {
+                width: 120px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .share_icon {
+                    width: 31px;
+                    height: 35px;
+                }
+            }
+            .consult {
+                width: 120px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .consult_icon {
+                    width: 35px;
+                    height: 35px;
+                }
+            }
+        }
+        .box_bottom_line {
+            height: 76px;
+            width: 1px;
+            background-color: #eeeeee;
+        }
+        .box_bottom_right {
+            width: 49%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .deliver_text {
+                font-size: 30px;
+                color: #333333;
+            }
+            .deliver_text_later{
+                color: #888888;
+            }
+        }
+    }
+}

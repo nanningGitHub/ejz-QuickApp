@@ -1,0 +1,530 @@
+<template>
+    <div class="page">
+        <div class="flex_page">
+            <tabs>
+                <tab-bar class="tab_bar">
+                    <text class="tab_bar_text {{$item.textcolor?'tab_bar_text_active':''}}" for="{{tabsbarlist}}" onclick="clickTab($idx)">{{$item.text}}</text>
+                </tab-bar>
+                <tab-content class="tab_content" if="{{0 == this.index}}">
+                    <list class="content all" onscrollbottom="loadMoreData">
+                        <block for="{{jobOfflinePage}}">
+                            <list-item type="product" class="item_all" onclick="intoApplyDetails($item.jobId)">
+                                <image src='../Common/Component/Joblist/img/offline/{{$item.solrJobOffline.image}}' class="job_item_icon">
+                                </image>
+                                <div class="job_itme_box">
+                                    <text class="job_item_name">{{$item.solrJobOffline.title}}</text>
+                                    <div class="job_item_box2">
+                                        <div class="job_item_address">
+                                            <image src="../Common/Component/Joblist/img/job_address_icon.png" class="job_item_address_icon"></image>
+                                            <text class="job_item_address_text">{{$item.solrJobOffline.address}}</text>
+                                        </div>
+                                        <div>
+                                            <text class="job_item_wage">{{$item.solrJobOffline.salaryStr}}</text>
+                                            <text class="job_item_unit">RMB/{{$item.solrJobOffline.salaryUnitStr}}</text>
+                                        </div>
+                                    </div>
+                                    <div class="job_item_box3">
+                                        <div class="job_item_time">
+                                            <image class="job_item_time_icon" src="../Common/Component/Joblist/img/job_time_icon.png"></image>
+                                            <text class="job_item_time_text">{{$item.solrJobOffline.startDate}}~{{$item.solrJobOffline.endDate}}</text>
+                                        </div>
+                                        <div class="position">
+                                            <text class="position_text">{{$item.dealStatusStr}}</text>
+                                        </div>
+                                    </div>
+                                </div>
+                            </list-item>
+                        </block>
+                        <!-- 加载更多，type属性自定义命名为loadMore -->
+                        <list-item type="loadMore" class="load-more">
+                            <progress show="{{hasMoreData}}" type="circular"></progress>
+                            <text show="{{hasMoreData}}">加载更多</text>
+                            <text show="{{!hasMoreData}}">没有更多了~</text>
+                        </list-item>
+                    </list>
+                </tab-content>
+                <tab-content class="tab_content" elif="{{1 == this.index}}">
+                    <!-- 待录用 -->
+                    <list class="content all" onscrollbottom="loadMoreData">
+                        <block for="{{daiLuYongList}}">
+                            <list-item type="product" class="item_hire">
+                                <div class="item_all" onclick="intoApplyDetails($item.jobId)">
+                                    <image src='../Common/Component/Joblist/img/offline/{{$item.solrJobOffline.image}}' class="job_item_icon">
+                                    </image>
+                                    <div class="job_itme_box">
+                                        <text class="job_item_name">{{$item.solrJobOffline.title}}</text>
+                                        <div class="job_item_box2">
+                                            <div class="job_item_address">
+                                                <image src="../Common/Component/Joblist/img/job_address_icon.png" class="job_item_address_icon"></image>
+                                                <text class="job_item_address_text">{{$item.solrJobOffline.address}}</text>
+                                            </div>
+                                            <div>
+                                                <text class="job_item_wage">{{$item.solrJobOffline.salaryStr}}</text>
+                                                <text class="job_item_unit">RMB/{{$item.solrJobOffline.salaryUnitStr}}</text>
+                                            </div>
+                                        </div>
+                                        <div class="job_item_box3">
+                                            <div class="job_item_time">
+                                                <image class="job_item_time_icon" src="../Common/Component/Joblist/img/job_time_icon.png"></image>
+                                                <text class="job_item_time_text">{{$item.solrJobOffline.startDate}}~{{$item.solrJobOffline.endDate}}</text>
+                                            </div>
+                                            <div class="position">
+                                                <text class="position_text">{{$item.dealStatusStr}}</text>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item_bottom">
+                                    <text class="item_bottom_text" onclick="tel($item.solrJobOffline.mobile)">联系企业</text>
+                                    <text class="item_bottom_text" onclick="showDialog($item.jobId)">取消投递</text>
+                                </div>
+                            </list-item>
+                        </block>
+                        <!-- 加载更多，type属性自定义命名为loadMore -->
+                        <list-item type="loadMore" class="load-more">
+                            <progress show="{{hasMoreData}}" type="circular"></progress>
+                            <text show="{{hasMoreData}}">加载更多</text>
+                            <text show="{{!hasMoreData}}">没有更多了~</text>
+                        </list-item>
+                    </list>
+                </tab-content>
+                <tab-content class="tab_content" elif="{{2 == this.index}}">
+                    <!-- 待上岗 -->
+                    <list class="content all" onscrollbottom="loadMoreData">
+                        <block for="{{daiShangGangList}}">
+                            <list-item type="product" class="item_hire">
+                                <div class="item_all" onclick="intoApplyDetails($item.jobId)">
+                                    <image src='../Common/Component/Joblist/img/offline/{{$item.solrJobOffline.image}}' class="job_item_icon">
+                                    </image>
+                                    <div class="job_itme_box">
+                                        <text class="job_item_name">{{$item.solrJobOffline.title}}</text>
+                                        <div class="job_item_box2">
+                                            <div class="job_item_address">
+                                                <image src="../Common/Component/Joblist/img/job_address_icon.png" class="job_item_address_icon"></image>
+                                                <text class="job_item_address_text">{{$item.solrJobOffline.address}}</text>
+                                            </div>
+                                            <div>
+                                                <text class="job_item_wage">{{$item.solrJobOffline.salaryStr}}</text>
+                                                <text class="job_item_unit">RMB/{{$item.solrJobOffline.salaryUnitStr}}</text>
+                                            </div>
+                                        </div>
+                                        <div class="job_item_box3">
+                                            <div class="job_item_time">
+                                                <image class="job_item_time_icon" src="../Common/Component/Joblist/img/job_time_icon.png"></image>
+                                                <text class="job_item_time_text">{{$item.solrJobOffline.startDate}}~{{$item.solrJobOffline.endDate}}</text>
+                                            </div>
+                                            <div class="position">
+                                                <text class="position_text">{{$item.dealStatusStr}}</text>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item_bottom">
+                                    <text class="item_bottom_text" onclick="tel($item.solrJobOffline.mobile)">联系企业</text>
+                                </div>
+                            </list-item>
+                        </block>
+                        <!-- 加载更多，type属性自定义命名为loadMore -->
+                        <list-item type="loadMore" class="load-more">
+                            <progress show="{{hasMoreData}}" type="circular"></progress>
+                            <text show="{{hasMoreData}}">加载更多</text>
+                            <text show="{{!hasMoreData}}">没有更多了~</text>
+                        </list-item>
+                    </list>
+                </tab-content>
+                <tab-content class="tab_content" elif="{{3 == this.index}}">
+                    <!-- 待结算 -->
+                    <list class="content all" onscrollbottom="loadMoreData">
+                        <block for="{{daiJieSuanList}}">
+                            <list-item type="product" class="item_hire">
+                                <div class="item_all" onclick="intoApplyDetails($item.jobId)">
+                                    <image src='../Common/Component/Joblist/img/offline/{{$item.solrJobOffline.image}}' class="job_item_icon">
+                                    </image>
+                                    <div class="job_itme_box">
+                                        <text class="job_item_name">{{$item.solrJobOffline.title}}</text>
+                                        <div class="job_item_box2">
+                                            <div class="job_item_address">
+                                                <image src="../Common/Component/Joblist/img/job_address_icon.png" class="job_item_address_icon"></image>
+                                                <text class="job_item_address_text">{{$item.solrJobOffline.address}}</text>
+                                            </div>
+                                            <div>
+                                                <text class="job_item_wage">{{$item.solrJobOffline.salaryStr}}</text>
+                                                <text class="job_item_unit">RMB/{{$item.solrJobOffline.salaryUnitStr}}</text>
+                                            </div>
+                                        </div>
+                                        <div class="job_item_box3">
+                                            <div class="job_item_time">
+                                                <image class="job_item_time_icon" src="../Common/Component/Joblist/img/job_time_icon.png"></image>
+                                                <text class="job_item_time_text">{{$item.solrJobOffline.startDate}}~{{$item.solrJobOffline.endDate}}</text>
+                                            </div>
+                                            <div class="position">
+                                                <text class="position_text">{{$item.dealStatusStr}}</text>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item_bottom">
+                                    <text class="item_bottom_text" onclick="tel($item.solrJobOffline.mobile)">联系企业</text>
+                                </div>
+                            </list-item>
+                        </block>
+                        <!-- 加载更多，type属性自定义命名为loadMore -->
+                        <list-item type="loadMore" class="load-more">
+                            <progress show="{{hasMoreData}}" type="circular"></progress>
+                            <text show="{{hasMoreData}}">加载更多</text>
+                            <text show="{{!hasMoreData}}">没有更多了~</text>
+                        </list-item>
+                    </list>
+                </tab-content>
+                <tab-content class="tab_content" elif="{{4 == this.index}}">
+                    <!-- 已结算 -->
+                    <list class="content all" onscrollbottom="loadMoreData">
+                        <block for="{{yiJieSuanList}}">
+                            <list-item type="product" class="item_hire">
+                                <div class="item_all" onclick="intoApplyDetails($item.jobId)">
+                                    <image src='../Common/Component/Joblist/img/offline/{{$item.solrJobOffline.image}}' class="job_item_icon">
+                                    </image>
+                                    <div class="job_itme_box">
+                                        <text class="job_item_name">{{$item.solrJobOffline.title}}</text>
+                                        <div class="job_item_box2">
+                                            <div class="job_item_address">
+                                                <image src="../Common/Component/Joblist/img/job_address_icon.png" class="job_item_address_icon"></image>
+                                                <text class="job_item_address_text">{{$item.solrJobOffline.address}}</text>
+                                            </div>
+                                            <div>
+                                                <text class="job_item_wage">{{$item.solrJobOffline.salaryStr}}</text>
+                                                <text class="job_item_unit">RMB/{{$item.solrJobOffline.salaryUnitStr}}</text>
+                                            </div>
+                                        </div>
+                                        <div class="job_item_box3">
+                                            <div class="job_item_time">
+                                                <image class="job_item_time_icon" src="../Common/Component/Joblist/img/job_time_icon.png"></image>
+                                                <text class="job_item_time_text">{{$item.solrJobOffline.startDate}}~{{$item.solrJobOffline.endDate}}</text>
+                                            </div>
+                                            <div class="position">
+                                                <text class="position_text">{{$item.dealStatusStr}}</text>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item_bottom">
+                                    <text class="item_bottom_text" onclick="tel($item.solrJobOffline.mobile)">联系企业</text>
+                                </div>
+                            </list-item>
+                        </block>
+                        <!-- 加载更多，type属性自定义命名为loadMore -->
+                        <list-item type="loadMore" class="load-more">
+                            <progress show="{{hasMoreData}}" type="circular"></progress>
+                            <text show="{{hasMoreData}}">加载更多</text>
+                            <text show="{{!hasMoreData}}">没有更多了~</text>
+                        </list-item>
+                    </list>
+                </tab-content>
+            </tabs>
+        </div>
+    </div>
+</template>
+<style lang="less">
+    @import './less/index.less';
+</style>
+
+<script>
+    import {
+        getJobOfflineList,
+        getDaiLuYongList,
+        getDaiShangGangList,
+        getDaiJieSuanList,
+        getYiJieSuanList,
+        deldeliverResume      //取消兼职投递接口
+    } from '../Common/Api/deliver'
+
+    import {
+        imgLogo,
+        formatTime
+    } from '../Common/utils/utils.js'
+
+    export default {
+        data: {
+            tabsbarlist: [{
+                text: '全部',
+                textcolor: true
+            },
+            {
+                text: '待录用',
+                textcolor: false
+            },
+            {
+                text: '待上岗',
+                textcolor: false
+            },
+            {
+                text: '待结算',
+                textcolor: false
+            },
+            {
+                text: '已结算',
+                textcolor: false
+            }
+            ],
+            token: '',
+            page: 1,
+            jobOfflinePage: [],
+            daiLuYongList: [],
+            daiShangGangList: [],
+            daiJieSuanList: [],
+            yiJieSuanList: [],
+            hasMoreData: 'true',
+            showindex: 0,
+            index: 0
+        },
+        onReady() {
+            var that = this;
+            this.$app.$def.storage.get({
+                key: 'user',
+                success: function (data) {
+                    that.token = JSON.parse(data).dataMap.token;
+                    that.getlist(that.index);
+                },
+                fail: function (data, code) {
+                    console.log(data)
+                }
+            })
+            this.tabsbarlist.map(item => {
+                item.textcolor = false
+            })
+            this.tabsbarlist[this.index].textcolor = true;
+        },
+        clickTab(index) {  //点击tab
+            this.tabsbarlist.map(item => {
+                item.textcolor = false
+            })
+            this.tabsbarlist[index].textcolor = true;
+            this.jobOfflinePage = [];
+            this.daiLuYongList = [];
+            this.daiShangGangList = [];
+            this.daiJieSuanList = [];
+            this.yiJieSuanList = [];
+            this.page = 1;
+            this.index = index;
+            this.getlist(this.index)
+        },
+        loadMoreData() {
+            this.page++;
+            this.getJobOfflineList()
+        },
+        getlist(index) {   //加载数据的判断
+            this.hasMoreData = true;
+            if (index == 0) {
+                this.getJobOfflineList()
+            } else if (index == 1) {
+                this.getDaiLuYongList()
+            } else if (index == 2) {
+                this.getDaiShangGangList()
+            } else if (index == 3) {
+                this.getDaiJieSuanList()
+            } else if (index == 4) {
+                this.getYiJieSuanList()
+            } else {
+                return
+            }
+        },
+        intoApplyDetails(jobId) {    //进入投递信息页面
+            this.$app.$def.router.push({
+                uri: '/ApplyDetails',
+                params: { jobId: jobId }
+            })
+        },
+        getJobOfflineList() {    //我的投递--全部
+            getJobOfflineList(this.token, this.page)
+                .then((data) => {
+                    if (data.dataMap.jobOfflinePage != undefined) {
+                        let BeforeJobOfflinePage = this.jobOfflinePage;
+                        let jobOfflinePage = data.dataMap.jobOfflinePage;
+                        jobOfflinePage.map(item => {
+                            item.solrJobOffline.image = imgLogo(item.solrJobOffline.jobSubtypeId);
+                            item.solrJobOffline.startDate = formatTime(item.solrJobOffline.startDate, 'Y.M.D');
+                            item.solrJobOffline.endDate = formatTime(item.solrJobOffline.endDate, 'Y.M.D');
+                        })
+                        jobOfflinePage = [...BeforeJobOfflinePage, ...jobOfflinePage];
+                        this.jobOfflinePage = jobOfflinePage;
+                        if (data.dataMap.jobOfflinePage.length < 10) {
+                            this.hasMoreData = false;
+                        } else {
+                            return
+                        }
+                    } else {
+                        this.hasMoreData = false;
+                    }
+
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+        },
+        getDaiLuYongList() {   //我的投递--待录用
+            getDaiLuYongList(this.token, this.page)
+                .then((data) => {
+                    if (data.dataMap.jobOfflinePage != undefined) {
+
+                        let BeforeJobOfflinePage = this.daiLuYongList;
+                        let jobOfflinePage = data.dataMap.jobOfflinePage;
+                        jobOfflinePage.map(item => {
+                            item.solrJobOffline.image = imgLogo(item.solrJobOffline.jobSubtypeId);
+                            item.solrJobOffline.startDate = formatTime(item.solrJobOffline.startDate, 'Y.M.D');
+                            item.solrJobOffline.endDate = formatTime(item.solrJobOffline.endDate, 'Y.M.D');
+                        })
+                        jobOfflinePage = [...BeforeJobOfflinePage, ...jobOfflinePage];
+                        this.daiLuYongList = jobOfflinePage;
+                        if (data.dataMap.jobOfflinePage.length < 10) {
+                            this.hasMoreData = false;
+                        } else {
+                            return
+                        }
+                    } else {
+                        this.hasMoreData = false;
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+        },
+        tel(mobile) {
+            this.$app.$def.router.push({
+                uri: 'tel:' + mobile,
+            })
+        },
+        showDialog(jobOfflineId) {   //我的投递--提示弹框
+            let that = this;
+            this.$app.$def.prompt.showDialog({
+                // title: '投递状态',
+                message: '是否取消投递',
+                buttons: [
+                    {
+                        text: '确定',
+                        color: '#37d3cb'
+                    }
+                ],
+                success: function (data) {
+                    that.deldeliverResume(jobOfflineId)
+                    console.log('handling callback')
+                },
+                cancel: function () {
+                    console.log('handling cancel')
+                },
+                fail: function (data, code) {
+                    console.log(`handling fail, code = ${code}`)
+                }
+            })
+        },
+        deldeliverResume(jobOfflineId) {
+            deldeliverResume(this.token, jobOfflineId)
+                .then((data) => {
+                    if (!data.code) {
+                        this.$app.$def.prompt.showToast({
+                            message: data.msg
+                        })
+                        this.page = 1;
+                        this.daiLuYongList = [];
+                        this.getDaiLuYongList()
+                    } else {
+                        return
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+        },
+        getDaiShangGangList() {   //我的投递 -- 待上岗
+            getDaiShangGangList(this.token, this.page)
+                .then((data) => {
+                    if (data.dataMap.jobOfflinePage != undefined) {
+
+                        let BeforeJobOfflinePage = this.daiShangGangList;
+                        let jobOfflinePage = data.dataMap.jobOfflinePage;
+                        jobOfflinePage.map(item => {
+                            item.solrJobOffline.image = imgLogo(item.solrJobOffline.jobSubtypeId);
+                            item.solrJobOffline.startDate = formatTime(item.solrJobOffline.startDate, 'Y.M.D');
+                            item.solrJobOffline.endDate = formatTime(item.solrJobOffline.endDate, 'Y.M.D');
+                        })
+                        jobOfflinePage = [...BeforeJobOfflinePage, ...jobOfflinePage];
+                        this.daiShangGangList = jobOfflinePage;
+                        if (data.dataMap.jobOfflinePage.length < 10) {
+                            this.hasMoreData = false;
+                        } else {
+                            return
+                        }
+                    } else {
+                        this.hasMoreData = false;
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+        },
+        getDaiJieSuanList() {   //我的投递 -- 待结算
+            getDaiJieSuanList(this.token, this.page)
+                .then((data) => {
+                    if (data.dataMap.jobOfflinePage != undefined) {
+
+                        let BeforeJobOfflinePage = this.daiJieSuanList;
+                        let jobOfflinePage = data.dataMap.jobOfflinePage;
+                        jobOfflinePage.map(item => {
+                            item.solrJobOffline.image = imgLogo(item.solrJobOffline.jobSubtypeId);
+                            item.solrJobOffline.startDate = formatTime(item.solrJobOffline.startDate, 'Y.M.D');
+                            item.solrJobOffline.endDate = formatTime(item.solrJobOffline.endDate, 'Y.M.D');
+                        })
+                        jobOfflinePage = [...BeforeJobOfflinePage, ...jobOfflinePage];
+                        this.daiJieSuanList = jobOfflinePage;
+                        if (data.dataMap.jobOfflinePage.length < 10) {
+                            this.hasMoreData = false;
+                        } else {
+                            return
+                        }
+                    } else {
+                        this.hasMoreData = false;
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+        },
+        getYiJieSuanList() {   //我的投递 -- 已结算
+            getYiJieSuanList(this.token, this.page)
+                .then((data) => {
+                    if (data.dataMap.jobOfflinePage != undefined) {
+                        let BeforeJobOfflinePage = this.yiJieSuanList;
+                        let jobOfflinePage = data.dataMap.jobOfflinePage;
+                        jobOfflinePage.map(item => {
+                            item.solrJobOffline.image = imgLogo(item.solrJobOffline.jobSubtypeId);
+                            item.solrJobOffline.startDate = formatTime(item.solrJobOffline.startDate, 'Y.M.D');
+                            item.solrJobOffline.endDate = formatTime(item.solrJobOffline.endDate, 'Y.M.D');
+                        })
+                        jobOfflinePage = [...BeforeJobOfflinePage, ...jobOfflinePage];
+                        this.yiJieSuanList = jobOfflinePage;
+                        if (data.dataMap.jobOfflinePage.length < 10) {
+                            this.hasMoreData = false;
+                        } else {
+                            return
+                        }
+                    } else {
+                        this.hasMoreData = false;
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+        },
+    }
+</script>

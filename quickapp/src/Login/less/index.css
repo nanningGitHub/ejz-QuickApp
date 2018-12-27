@@ -1,0 +1,60 @@
+.page .flex_page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.login_box {
+  width: 100%;
+  padding: 0 58px;
+  display: flex;
+  flex-direction: column;
+}
+.login_box .phone_box {
+  height: 120px;
+  width: 100%;
+  border-bottom-color: #eeeeee;
+  border-bottom-width: 1px;
+}
+.login_box .phone_box .phone_nub {
+  width: 100%;
+  font-size: 28px;
+}
+.login_box .password_box {
+  height: 120px;
+  width: 100%;
+  border-bottom-color: #eeeeee;
+  border-bottom-width: 1px;
+}
+.login_box .password_box .password_nub {
+  width: 100%;
+  font-size: 28px;
+}
+.login_box .login_btn {
+  margin-top: 64px;
+  width: 100%;
+  height: 100px;
+  background-color: #37d3cb;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login_box .login_btn .login_btn_text {
+  font-size: 28px;
+  color: #fefefe;
+}
+.login_box .forget_register {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.login_box .forget_register .forget_text {
+  font-size: 24px;
+  color: #333333;
+}
+.login_box .forget_register .register_text {
+  font-size: 24px;
+  color: #333333;
+}

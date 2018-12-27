@@ -1,0 +1,209 @@
+<template>
+  <!-- template里只能有一个根节点 -->
+  <div class="page">
+    <div class="flex_page">
+      <div class="flex_page_top">
+        <div class="header">
+          <div class="head_box" onclick="intoResume">
+            <image class="headerurl" src="{{userResume.headerFile?userResume.headerFile:'img/head_icon.png'}}"></image>
+          </div>
+          <div class="user_box" if="{{isLogin}}">
+            <div class="user_name_box">
+              <text class="user_name">{{userResume.realName? userResume.realName:userResume.phoneNumber}}</text>
+            </div>
+            <div class="user_data">
+              <div class="resume">
+                <text class="resume_nub">{{userdata.resumedata}}%</text>
+                <text class="resume_text" onclick="intoResume">完善简历</text>
+              </div>
+              <div class="wallet">
+                <div class="wallet_nub">
+                  <text class="wallet_nub_text">{{userdata.wallet}}</text>
+                  <text class="yuan">元</text>
+                </div>
+                <text>钱包余额</text>
+              </div>
+            </div>
+          </div>
+          <div class="notLogin" else onclick="intoLogin">
+            <text class="login_text">未登录</text>
+          </div>
+        </div>
+        <div class="deliver_box">
+          <div class="deliver_top" onclick="intoDeliver(0)">
+            <text class="deliver_top_text">我的投递</text>
+            <image src="{{entrance}}"></image>
+          </div>
+          <div class="deliver_bottom">
+            <div class="deliver_item" for="{{deliverlist}}" onclick="intoDeliver($item.index)">
+              <div>
+                <image class="deliver_item_icon" src="{{$item.delivericon}}"></image>
+              </div>
+              <text class="deliver_item_text">{{$item.delivertext}}</text>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tabbar_box">
+        <div class="tabbar_index" onclick='clickTabBar()'>
+          <image class="index_icon" src="{{indexicon}}"></image>
+          <text class="index_text">首页</text>
+        </div>
+        <div class="tabbar_my">
+          <image class="my_icon" src="{{myicon}}"></image>
+          <text class="my_text">我的</text>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style lang="less">
+  @import './less/index.less';
+</style>
+
+<script>
+  import {
+    showUserResume,
+    getData
+  } from '../Common/Api/my'
+
+  export default {
+    data: {
+      indexicon: 'img/index_icon.png',
+      myicon: 'img/my_active_icon.png',
+      entrance: 'img/entrance_icon.png',
+      deliverlist: [{
+        delivericon: 'img/hire_icon.png',
+        delivertext: '待录用',
+        index: 1
+      },
+      {
+        delivericon: 'img/mountGuard.png',
+        delivertext: '待上岗',
+        index: 2
+      },
+      {
+        delivericon: 'img/settlement.png',
+        delivertext: '待结算',
+        index: 3
+      },
+      {
+        delivericon: 'img/pay.png',
+        delivertext: '已结算',
+        index: 4
+
+      }
+      ],
+      isLogin: false,
+      userResume: {},
+      userdata: {
+        resumedata: '',
+        wallet: ''
+      },
+      token: ''
+    },
+    /**
+     * 当用户点击菜单按钮时触发，调用app中定义的方法showMenu
+     * 注意：使用加载器测试`创建桌面快捷方式`功能时，请先在`系统设置`中打开`应用加载器`的`桌面快捷方式`权限
+     */
+    onMenuPress() {
+      this.$app.$def.showMenu()
+    },
+    onShow() {
+      var that = this;
+      this.$app.$def.storage.get({
+        key: 'user',
+        success: function (data) {
+          if (data) {
+            that.isLogin = true;
+            that.token = JSON.parse(data).dataMap.token;
+            that.showUserResume();
+            that.getData();
+          } else {
+            that.isLogin = false;
+          }
+        },
+        fail: function (data, code) {
+          console.log(data)
+        }
+      })
+
+    },
+    showUserResume() {  //显示简历接口
+      showUserResume(this.token)
+        .then((data) => {
+          if (data.code !== 0) {
+            this.$app.$def.prompt.showToast({
+              message: data.msg
+            })
+          } else {
+            console.log(data)
+            this.userResume = data.dataMap.userResume
+          }
+        })
+        .catch((err) => {
+          this.$app.$def.prompt.showToast({
+            message: "请检查您的网络"
+          })
+        })
+    },
+    getData() {
+      getData(this.token)
+        .then((data) => {
+          if (data.code == 0) {
+            data.dataMap.userData.resumedata = data.dataMap.userData.resumedata.slice(3, 4)
+            this.userdata = data.dataMap.userData;
+          } else {
+            this.$app.$def.prompt.showToast({
+              message: data.msg
+            })
+          }
+        })
+        .catch((err) => {
+          this.$app.$def.prompt.showToast({
+            message: "请检查您的网络"
+          })
+        })
+    },
+    intoLogin() {
+      this.$app.$def.router.push({
+        uri: '/Login'
+      })
+    },
+    intoDeliver(index) {
+      if (this.isLogin) {
+        this.$app.$def.router.push({
+          uri: '/Deliver',
+          params: { index: index }
+        })
+      } else {
+        this.$app.$def.router.push({
+          uri: '/Login'
+        })
+      }
+    },
+    intoResume() {
+      if (this.isLogin) {
+        if (this.userdata.resumedata == 0) {
+          this.$app.$def.router.push({
+            uri: '/Resume'
+          })
+        } else {
+          this.$app.$def.router.push({
+            uri: '/ResumeShow'
+          })
+        }
+      } else {
+        this.$app.$def.router.push({
+          uri: '/Login'
+        })
+      }
+    },
+    clickTabBar() {
+      this.$app.$def.router.replace({
+        uri: '/Index'
+      })
+    },
+  }
+</script>

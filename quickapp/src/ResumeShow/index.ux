@@ -1,0 +1,170 @@
+<template>
+    <div class="page">
+        <div class="flex_page">
+            <div class="basic module">
+                <image class="head" src="{{userResume.headerFile}}"></image>
+                <div class="basic_box">
+                    <text class="name_text">{{userResume.realName}}</text>
+                    <div class="basic_box_basic">
+                        <div class="basic_box_basic_top">
+                            <div class="basic_box_basic_left">
+                                <text class="basic_box_basic_title">性别：</text>
+                                <text class="basic_box_basic_text">{{userResume.gender?'男':'女'}}</text>
+                            </div>
+                            <div class="basic_box_basic_right">
+                                <text class="basic_box_basic_title">身高：</text>
+                                <text class="basic_box_basic_text">{{userResume.height}}cm</text>
+                            </div>
+                        </div>
+                        <div class="basic_box_basic_bottom">
+                            <div class="basic_box_basic_left">
+                                <text class="basic_box_basic_title">年龄：</text>
+                                <text class="basic_box_basic_text">{{userResume.age}}</text>
+                            </div>
+                            <div class="basic_box_basic_right">
+                                <text class="basic_box_basic_title">体重：</text>
+                                <text class="basic_box_basic_text">{{userResume.weight}}kg</text>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="education module">
+                <div class="module_title">
+                    <div class="module_title_icon"></div>
+                    <text class="module_title_text">学历信息</text>
+                </div>
+                <div class="line"></div>
+                <div class="module_content">
+                    <div class="module_item">
+                        <text class="item_title">教育情况：</text>
+                        <text class="item_text">{{userResume.eduSituation?'已毕业':'未毕业'}}</text>
+                    </div>
+                    <div class="module_item">
+                        <text class="item_title">毕业学校：</text>
+                        <text class="item_text">{{userResume.school}}</text>
+                    </div>
+                    <div class="module_item">
+                        <text class="item_title">入学年份：</text>
+                        <text class="item_text">{{userResume.startSchool}}年</text>
+                    </div>
+                    <div class="module_item">
+                        <text class="item_title">学历：</text>
+                        <text class="item_text">{{userResume.degree}}</text>
+                    </div>
+                    <div class="module_item">
+                        <text class="item_title">专业：</text>
+                        <text class="item_text">{{userResume.profession}}</text>
+                    </div>
+                </div>
+            </div>
+            <div class="site module">
+                <div class="module_title">
+                    <div class="module_title_icon"></div>
+                    <text class="module_title_text">求职意向</text>
+                </div>
+                <div class="line"></div>
+                <div class="module_content">
+                    <div class="module_item">
+                        <text class="item_title">期望职位：</text>
+                        <div style="width:500px;display: flex;justify-content: flex-start;flex-wrap:wrap;">
+                            <text class="item_text" for="{{userResume.jobIntent}}">{{$item}}</text>
+                        </div>
+
+                    </div>
+                    <div class="module_item">
+                        <text class="item_title">期望地区：</text>
+                        <text class="item_text">{{address.province}}{{address.city}}{{address.area}}</text>
+                    </div>
+                </div>
+            </div>
+            <div class="contact module">
+                <div class="module_title">
+                    <div class="module_title_icon"></div>
+                    <text class="module_title_text">联系方式</text>
+                </div>
+                <div class="line"></div>
+                <div class="module_content">
+                    <div class="module_item">
+                        <text class="item_title">电话：</text>
+                        <text class="item_text">{{userResume.mobile}}</text>
+                    </div>
+                    <div class="module_item">
+                        <text class="item_title">邮箱：</text>
+                        <text class="item_text">{{userResume.email}}</text>
+                    </div>
+                    <div class="module_item">
+                        <text class="item_title">Q Q：</text>
+                        <text class="item_text">{{userResume.qq}}</text>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</template>
+<style lang="less">
+    @import './less/index.less';
+</style>
+<script>
+    import storage from '@system.storage'
+
+    import {
+        showUserResume
+    } from '../Common/Api/resumeShow'
+
+    export default {
+        data: {
+            userResume: {},
+            address: {}
+        },
+        onShow() {
+            let that = this;
+            this.$app.$def.storage.get({
+                key: 'user',
+                success: function (data) {
+                    let token = JSON.parse(data).dataMap.token
+                    that.showUserResume(token)
+                },
+                fail: function (data, code) {
+                    console.log(data)
+                }
+            })
+        },
+        onMenuPress() {
+            this.$app.$def.intoEditResume()
+        },
+        showUserResume(token) {
+            showUserResume(token)
+                .then((data) => {
+                    if (data.code !== 0) {
+                        this.$app.$def.prompt.showToast({
+                            message: data.msg
+                        })
+                    } else {
+                        console.log(data.dataMap.userResume)
+                        this.userResume = data.dataMap.userResume;
+                        this.address = data.dataMap.userResume.address;
+                        this.setresume()
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+        },
+        setresume() {
+            this.$app.$def.storage.set({
+                key: 'resumedata',
+                value: this.userResume,
+                success: function (data) {
+                    console.log('handling success')
+                },
+                fail: function (data, code) {
+                    console.log(`handling fail, code = ${code}`)
+                }
+            })
+        }
+    }
+</script>

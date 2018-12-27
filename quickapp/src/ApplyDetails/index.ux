@@ -1,0 +1,251 @@
+<template>
+    <div class="page">
+        <div class="flex_page">
+            <div class="header">
+                <div class="job_item">
+                    <image src='../Common/Component/Joblist/img/offline/{{jobOffline.image}}' class="job_item_icon">
+                    </image>
+                    <div class="job_itme_box">
+                        <text class="job_item_name">{{jobOffline.title}}</text>
+                        <div class="job_item_box2">
+                            <div class="job_item_address">
+                                <image src="../Common/Component/Joblist/img/job_address_icon.png" class="job_item_address_icon"></image>
+                                <text class="job_item_address_text">{{jobOffline.address}}</text>
+                            </div>
+                            <div>
+                                <text class="job_item_wage">{{jobOffline.salaryStr}}</text>
+                                <text class="job_item_unit">RMB/{{jobOffline.salaryUnitStr}}</text>
+                            </div>
+                        </div>
+                        <div class="job_item_box3">
+                            <div class="job_item_time">
+                                <image class="job_item_time_icon" src="../Common/Component/Joblist/img/job_time_icon.png"></image>
+                                <text class="job_item_time_text">{{jobOffline.startDate}}~{{jobOffline.endDate}}</text>
+                            </div>
+                            <div class="position">
+                                <text class="position_text">{{jobOffline.jobTypeStr}}-{{jobOffline.settlementTypeStr}}结</text>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <text class="companyname">{{enterprise.name}}</text>
+            </div>
+            <div class="content">
+                <div class="record">
+                    <div class="record_head">
+                        <text class="record_head_text">兼职轨迹</text>
+                    </div>
+                    <div class="record_content">
+                        <div class="record_icon_box">
+                            <image src="img/accomplish_icon.png" class="record_icon"></image>
+                            <div class="line"></div>
+                            <image src="{{statusNum==2||statusNum==3||statusNum==4||statusNum==5?'img/accomplish_icon.png':statusNum==-1||statusNum==0?'img/cancel_icon.png':statusNum==1?'img/record_icon.png':'img/record_icon.png'}}"
+                                class="record_icon"></image>
+                            <div class="line"></div>
+                            <image src="{{statusNum==-1||statusNum==0||statusNum==1||statusNum==2?'img/record_icon.png':statusNum==3||statusNum==4||statusNum==5?'img/accomplish_icon.png':'img/record_icon.png'}}"
+                                class="record_icon"></image>
+                            <div class="line"></div>
+                            <image src="{{statusNum==5?'img/accomplish_icon.png':'img/record_icon.png'}}" class="record_icon"></image>
+                        </div>
+                        <div class="record_text_box">
+                            <text class="record_text">待录用</text>
+                            <text class="record_text">{{statusNum==1||statusNum==2||statusNum==3||statusNum==4||statusNum==5?'待上岗':statusNum==-1?'已拒绝':statusNum==0?'已取消':''}}</text>
+                            <text class="record_text">{{statusNum==-1||statusNum==0||statusNum==1||statusNum==2||statusNum==5?'待结算':statusNum==3?'已上岗':statusNum==4?'待结算':''}}</text>
+                            <text class="record_text">已结算</text>
+                        </div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="workflow">
+                        <div class="workflow_box">
+                            <div class="step">
+                                <div class="step_time" if='{{isgetShangGangJiLu}}'>
+                                    <image src="img/dot_icon.png" class="step_icon"></image>
+                                    <text class="step_time_text_top">您有签到签退记录了</text>
+                                </div>
+                                <div class="record_box">
+                                    <div class="record_item" for="{{getShangGangJiLu}}">
+                                        <text>{{getShangGangJiLu}}</text>
+                                        <text class="record_text">签到地址：{{$item.clockinAddress}}</text>
+                                        <text class="record_text">签到时间：{{$item.createdDate}}</text>
+                                        <text class="record_text">签退地址：{{$item.clockoutAddress||'未签退'}}</text>
+                                        <text class="record_text">签退时间：{{$item.endDate||'未签退'}}</text>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step_time">
+                                    <image src="img/dot_icon.png" class="step_icon"></image>
+                                    <text class="step_time_text">{{workFlow.step1?workFlow.step1.date:''}}</text>
+                                </div>
+                                <text class="step_text">{{workFlow.step1?workFlow.step1.info:''}}</text>
+                            </div>
+                            <div class="step" if='{{workFlow.step2}}'>
+                                <div class="step_time">
+                                    <image src="img/dot_icon.png" class="step_icon"></image>
+                                    <text class="step_time_text">{{workFlow.step2?workFlow.step1.date:''}}</text>
+                                </div>
+                                <text class="step_text">{{workFlow.step2?workFlow.step2.info:''}}</text>
+                            </div>
+                            <div class="step" if='{{workFlow.step3}}'>
+                                <div class="step_time">
+                                    <image src="img/dot_icon.png" class="step_icon"></image>
+                                    <text class="step_time_text">{{workFlow.step2?workFlow.step1.date:''}}</text>
+                                </div>
+                                <text class="step_text">{{workFlow.step3?workFlow.step3.info:''}}</text>
+                            </div>
+                            <div class="step" if='{{workFlow.step4}}'>
+                                <div class="step_time">
+                                    <image src="img/dot_icon.png" class="step_icon"></image>
+                                    <text class="step_time_text">{{workFlow.step4?workFlow.step1.date:''}}</text>
+                                </div>
+                                <text class="step_text">{{workFlow.step4?workFlow.step4.info:''}}</text>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<style lang="less">
+    @import './less/index.less';
+</style>
+<script>
+    import {
+        getEnterprise,
+    } from '../Common/Api/JobDetails'
+
+    import {
+        getShangGangJiLu
+    } from '../Common/Api/applyDetails'
+
+    import {
+        imgLogo,
+        formatTime,
+        genderLimit,
+        companyLogo
+    } from '../Common/utils/utils.js'
+
+    export default {
+        data: {
+            jobId: '',
+            token: '',
+            jobOffline: {},
+            enterprise: {},  //企业信息
+            isgetShangGangJiLu: false,
+            getShangGangJiLu: [{
+                clockinAddress: "中国北京市海淀区上地街道马连洼北路",
+                clockoutAddress: "中国北京市海淀区上地街道马连洼北路",
+                createdDate: 1481078682000,
+                endDate: 1481078686000,
+                enterpriseId: 1,
+                id: 4,
+                isClockin: 1,
+                isClockout: 1,
+                isConfirmClockinOk: 0,
+                isConfirmClockoutOk: 0,
+                jobId: 2,
+                jobOfflineRequestId: 0,
+                modifyDate: 1481078686000,
+                startDate: 1481078682000,
+                temObjectId: "5847779a79bc44d497e644eb",
+                userId: 19
+            }],
+            statusNum: '',
+            workFlow: {}
+        },
+        onReady() {
+            var that = this;
+            this.$app.$def.storage.get({
+                key: 'user',
+                success: function (data) {
+                    that.token = JSON.parse(data).dataMap.token;
+                    that.getShangGangJiLu()
+                },
+                fail: function (data, code) {
+                    console.log(data)
+                }
+            })
+        },
+        getShangGangJiLu() {
+            getShangGangJiLu(this.token, this.jobId)
+                .then((data) => {
+                    if (data.code !== 0) {
+                        this.$app.$def.prompt.showToast({
+                            message: data.msg
+                        })
+                    } else {
+                        console.log(data)
+                        let jobOffline = data.dataMap.jobOffline;
+                        let statusNum = data.dataMap.statusNum;
+                        let workFlow = data.dataMap.workFlow;
+                        jobOffline.image = imgLogo(jobOffline.jobSubtypeId);
+                        jobOffline.startDate = formatTime(jobOffline.startDate, 'Y.M.D');
+                        jobOffline.endDate = formatTime(jobOffline.endDate, 'Y.M.D');
+                        jobOffline.genderLimit = genderLimit(jobOffline.genderLimit);
+                        jobOffline.jobTypeStr = jobOffline.jobTypeStr.split(',')[0];
+                        this.jobOffline = jobOffline;
+                        this.statusNum = data.dataMap.statusNum;
+                        if (statusNum == 0 || statusNum == '-1') {
+                            workFlow.step1.date = formatTime(workFlow.step1.date, 'Y-M-D h:m:s');
+                            workFlow.step4.date = formatTime(workFlow.step4.date, 'Y-M-D h:m:s');
+                        } else if (statusNum == 2 || statusNum == 3 || statusNum == 4) {
+                            workFlow.step1.date = formatTime(workFlow.step1.date, 'Y-M-D h:m:s');
+                            workFlow.step2.date = formatTime(workFlow.step2.date, 'Y-M-D h:m:s');
+                        } else if (statusNum == 1) {
+                            workFlow.step1.date = formatTime(workFlow.step1.date, 'Y-M-D h:m:s');
+                        } else {
+                            workFlow.step1.date = formatTime(workFlow.step1.date, 'Y-M-D h:m:s');
+                            workFlow.step2.date = formatTime(workFlow.step2.date, 'Y-M-D h:m:s');
+                            workFlow.step3.date = formatTime(workFlow.step3.date, 'Y-M-D h:m:s');
+                            workFlow.step4.date = formatTime(workFlow.step4.date, 'Y-M-D h:m:s');
+                        }
+                        console.log(data.dataMap.getShangGangJiLu)
+                        if (data.dataMap.getShangGangJiLu) {
+                            this.isgetShangGangJiLu = true;
+                            let getShangGangJiLu = data.dataMap.getShangGangJiLu;
+                            getShangGangJiLu.map(item => {
+                                item.createdDate = formatTime(item.createdDate, 'Y-M-D h:m:s');
+                                if (item.endDate) {
+                                    item.endDate = formatTime(item.endDate, 'Y-M-D h:m:s');
+                                }
+
+                            })
+
+                            this.getShangGangJiLu = getShangGangJiLu;
+                        }
+                        this.workFlow = workFlow;
+                        this.getEnterprise(jobOffline.enterpriseId);
+
+
+
+
+
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+        },
+        getEnterprise(enterpriseId) {
+            getEnterprise(enterpriseId)
+                .then((data) => {
+                    if (data.code !== 0) {
+                        this.$app.$def.prompt.showToast({
+                            message: data.msg
+                        })
+                    } else {
+                        this.enterprise = data.dataMap.enterprise
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+        },
+    }
+</script>

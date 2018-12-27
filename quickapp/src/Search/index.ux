@@ -1,0 +1,88 @@
+<template>
+    <div class="page">
+        <div class="flex_page">
+            <div class="search_box">
+                <div class="search_bg">
+                    <image class="search_icon" src="img/search_icon.png"></image>
+                    <input class="search_input" type="text" value="" placeholder="招聘考研英语老师" onchange="inputHotWord" />
+                </div>
+                <text class="seach_btn" onclick="intoIndex">确定</text>
+            </div>
+            <div class="find_box">
+                <text class="find_top">猜你想找</text>
+                <div class="find_content">
+                    <div onclick="hotWord($item)" for="{{hotWords}}">
+                        <text class=" fint_item">{{$item}}</text>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<style lang="less">
+    @import './less/index.css';
+</style>
+<script>
+    import {
+        gethotWords
+    } from '../Common/Api/search'
+    import router from '@system.router'
+    var storage = require('@system.storage')
+
+    export default {
+        data: {
+            hotWords: [],
+            searchkey: ''
+        },
+        onShow() {
+            this.gethotWords()
+        },
+        gethotWords() {
+            gethotWords()
+                .then((data) => {
+                    if (data.code !== 0) {
+                        this.$app.$def.prompt.showToast({
+                            message: data.msg
+                        })
+                    } else {
+                        this.hotWords = data.dataMap.hotWords
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+        },
+        hotWord(hotWord) {
+            this.searchkey = hotWord;
+            this.intoIndex()
+        },
+        inputHotWord({
+            value
+        }) {
+            this.searchkey = value;
+        },
+        intoIndex() {
+            // router.push({
+            //     url: 'Index',
+            //     params: {
+            //         searchkey: this.searchkey
+            //     }
+            // })
+
+            storage.set({
+                key: 'searchkey',
+                value: {
+                    searchkey: this.searchkey,
+                },
+                success: function (data) {
+                    router.back()
+                },
+                fail: function (data, code) {
+                    console.log(`handling fail, code = ${code}`)
+                }
+            })
+        }
+    }
+</script>

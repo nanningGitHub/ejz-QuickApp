@@ -1,0 +1,121 @@
+<template>
+    <div class="page">
+        <div class="flex_page">
+            <div class="search_box">
+                <div class="search_bg">
+                    <image class="search_icon" src="img/search_icon.png"></image>
+                    <input class="search_input" type="text" value="" placeholder="城市 / 拼音" onchange="inputKeyname" />
+                </div>
+                <text class="seach_btn" onclick="getCitys">确定</text>
+            </div>
+            <div class="locationCity">
+                <text class="locationCity_text">当前定位：{{cityname}}</text>
+            </div>
+            <div class="find_box">
+                <text class="find_top">热门城市</text>
+                <div class="find_content">
+                    <div onclick="City($item)" for="{{hotCitys}}">
+                        <text class=" fint_item">{{$item.value}}</text>
+                    </div>
+                </div>
+            </div>
+            <div class="city">
+                <div class="city_top">
+                    <text class="city_top_text">所有城市</text>
+                </div>
+                <div class="city_content">
+                    <div class="city_item" onclick="City($item)" for="{{Citys}}">
+                        <text class="city_item_text">{{$item.value}}</text>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</template>
+<style lang="less">
+    @import './less/index.css';
+</style>
+<script>
+    import {
+        gethotCitys,
+        getCitys
+    } from '../Common/Api/city'
+
+    import {
+        letterSort
+    } from '../Common/utils/utils'
+
+    import router from '@system.router'
+    var storage = require('@system.storage')
+
+    export default {
+        data() {
+            return {
+                hotCitys: [],
+                Citys: [],
+                keyname: '',
+                cityname: ""
+            }
+        },
+        onShow() {
+            this.gethotCitys();
+            this.getCitys();
+        },
+        inputKeyname({
+            value
+        }) {
+            this.keyname = value
+        },
+        gethotCitys() {
+            gethotCitys()
+                .then((data) => {
+                    if (data.code !== 0) {
+                        this.$app.$def.prompt.showToast({
+                            message: data.msg
+                        })
+                    } else {
+                        this.hotCitys = data.dataMap.cityList
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+        },
+        getCitys() {
+            getCitys(this.keyname)
+                .then((data) => {
+                    if (data.code !== 0) {
+                        this.$app.$def.prompt.showToast({
+                            message: data.msg
+                        })
+                    } else {
+                        console.log(data)
+                        this.Citys = data.dataMap.cityList.sort(letterSort('enValue'))
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+        },
+        City(item) {
+            storage.set({
+                key: 'city',
+                value: {
+                    cityid: item.key,
+                    cityname: item.value
+                },
+                success: function (data) {
+                    router.back()
+                },
+                fail: function (data, code) {
+                    console.log(`handling fail, code = ${code}`)
+                }
+            })
+        }
+    }
+</script>

@@ -1,0 +1,115 @@
+<template>
+    <list class="content" onscrollbottom="loadMoreData">
+        <block for="{{jobOfflinePage.dataList}}">
+            <list-item type="product" class="job_item" onclick="openJobDetails($item.id)">
+                <image src='../Common/Component/Joblist/img/offline/{{$item.image}}' class="
+                job_item_icon">
+                </image>
+                <div class="job_itme_box">
+                    <text class="job_item_name">{{$item.title}}</text>
+                    <div class="job_item_box2">
+                        <div class="job_item_address">
+                            <image src="../Common/Component/Joblist/img/job_address_icon.png" class="job_item_address_icon"></image>
+                            <text class="job_item_address_text">{{$item.address}}</text>
+                        </div>
+                        <div>
+                            <text class="job_item_wage">{{$item.salaryStr}}</text>
+                            <text class="job_item_unit">RMB/{{$item.salaryUnitStr}}</text>
+                        </div>
+                    </div>
+                    <div class="job_item_box3">
+                        <div class="job_item_time">
+                            <image class="job_item_time_icon" src="../Common/Component/Joblist/img/job_time_icon.png"></image>
+                            <text class="job_item_time_text">{{$item.startDate}}~{{$item.endDate}}</text>
+                        </div>
+                        <div class="position">
+                            <text class="position_text">{{$item.jobTypeStr.split(',')[0]}}-{{$item.settlementTypeStr}}结</text>
+                        </div>
+                    </div>
+                </div>
+            </list-item>
+        </block>
+        <!-- 加载更多，type属性自定义命名为loadMore -->
+        <list-item type="loadMore" class="load-more">
+            <progress show="{{hasMoreData}}" type="circular"></progress>
+            <text show="{{hasMoreData}}">加载更多</text>
+            <text show="{{!hasMoreData}}">没有更多了~</text>
+        </list-item>
+    </list>
+</template>
+<style lang="less">
+    @import './less/index.css';
+</style>
+<script>
+    import router from '@system.router'
+
+    import {
+        getJobList
+    } from '../../Api/joblist'
+
+    import {
+        imgLogo,
+        formatTime
+    } from '../../utils/utils.js'
+
+    export default {
+        props: [
+            "searchkeytext",
+            "key",
+            "jobofflinepage"
+        ],
+        data() {
+            return {
+                searchkey: this.searchkeytext,
+                cityId: this.key,
+                pageNo: 1,
+                jobOfflinePage: this.jobofflinepage,
+                hasMoreData: 'true'
+            }
+        },
+        onShow() {
+            // this.getJobList()
+            console.log(this.jobofflinepage)
+        },
+        loadMoreData() {
+            this.pageNo++
+            this.getJobList()
+        },
+        openJobDetails(JobOfflineId) {
+            router.push({
+                uri: 'JobDetails',
+                params: {
+                    JobOfflineId: JobOfflineId
+                }
+            })
+        },
+        getJobList() {
+            getJobList(this.cityId, this.pageNo, this.searchkey)
+                .then((data) => {
+                    if (data.code !== 0) {
+                        this.$app.$def.prompt.showToast({
+                            message: data.msg
+                        })
+                    } else {
+                        let jobOfflinePage = data.dataMap.jobOfflinePage;
+                        let BeforeJobOfflinePage = this.jobOfflinePage;
+                        if (jobOfflinePage.dataList == '') {
+                            this.hasMoreData = false
+                        }
+                        jobOfflinePage.dataList.map(item => {
+                            item.image = imgLogo(item.jobSubtypeId);
+                            item.startDate = formatTime(item.startDate, 'Y.M.D');
+                            item.endDate = formatTime(item.endDate, 'Y.M.D');
+                        })
+                        jobOfflinePage.dataList = [...BeforeJobOfflinePage.dataList, ...jobOfflinePage.dataList]
+                        this.jobOfflinePage = jobOfflinePage;
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: data
+                    })
+                })
+        }
+    }
+</script>

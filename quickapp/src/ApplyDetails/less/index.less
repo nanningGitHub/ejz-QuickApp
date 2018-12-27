@@ -1,0 +1,219 @@
+.page .flex_page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 12px 0px 12px;
+    background-color: #f2f2f2;    
+}
+
+.header{
+    height: 230px;
+    border-radius:10px;
+    background-color:#ffffff; 
+    display: flex;
+    flex-direction: column;
+    margin-bottom:16px; 
+    .job_item {
+        background-color: #ffffff;
+        height: 160px;
+        border-bottom-color: #eeeeee;
+        border-bottom-width: 1px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        .job_item_icon {
+            width: 80px;
+            height: 80px;
+            margin-left: 50px;
+            margin-right: 50px;
+        }
+        .job_itme_box {
+            width: 520px;
+            height: 110px;
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+            .job_item_name {
+                color: #333333;
+                font-size: 28px;
+                text-align: left;
+            }
+            .job_item_box2 {
+                display: flex;
+                justify-content: space-between;
+                .job_item_address {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    .job_item_address_icon {
+                        width: 22px;
+                        width: 18px;
+                        margin-right: 14px;
+                    }
+                    .job_item_address_text {
+                        width: 200px;
+                        lines: 1;
+                        text-overflow: ellipsis;
+                        color: #888888;
+                        font-size: 22px;
+                    }
+                }
+                .job_item_wage {
+                    color: #37d3cb;
+                    font-size: 40px;
+                }
+                .job_item_unit {
+                    margin-left: 12px;
+                    font-size: 28px;
+                    color: #37d3cb;
+                }
+            }
+            .job_item_box3 {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .job_item_time {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    .job_item_time_icon {
+                        width: 18px;
+                        width: 18px;
+                        margin-right: 12px;
+                    }
+                    .job_item_time_text {
+                        font-size: 22px;
+                        color: #888888;
+                    }
+                }
+                .position {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    background-color: #eeeeee;
+                    height: 32px;
+                    border-radius: 32px;
+                    padding: 0 10px;
+                    .position_text {
+                        color: #888888;
+                        font-size: 20px;
+                        background-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+    .companyname{
+        padding-left: 44px;
+        font-size: 26px;
+        color: #333333;
+        height: 70px;
+    }
+}
+.content{
+    border-radius:10px;
+    background-color:#ffffff; 
+    display: flex;
+    flex-direction: column;
+    .record{
+        display: flex;
+        flex-direction: column;
+        .record_head{
+             height: 80px;
+             padding-left:44px; 
+             .record_head_text{
+                 font-size: 28px;
+                 color: #333333;
+             }
+        }
+        .record_content{
+            height: 186px;
+            display: flex;
+            flex-direction: column;
+            .record_icon_box{
+                height: 90px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .record_icon{
+                    height: 50px;
+                    width: 50px;
+                }
+                .line{
+                      width: 98px;
+                      height: 2px;
+                      background-color:  #e6e6e6;
+                }
+            } 
+            .record_text_box{
+                margin-top: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .record_text{
+                   margin:0px 32px;
+                   font-size: 28px;
+                   color: #333333;
+                }
+            }
+        }
+        .line{
+            height: 2px;
+            background-color: #e6e6e6;
+        }
+        .workflow{
+            display: flex;
+            flex-direction: column;
+            .workflow_box{
+                display: flex;
+                flex-direction: column;
+                padding-top: 36px;
+                .step{
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 36px;
+                    .record_box{
+                        display: flex;
+                        flex-direction: column;
+                        padding-left: 86px;
+                        .record_item{
+                            margin-top: 16px;
+                            display: flex;
+                            flex-direction: column;
+                            .record_text{
+                                font-size: 26px; 
+                                color: #888888; 
+                            }
+                        }
+                    }
+                    .step_time{
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        .step_icon{
+                            width: 26px;
+                            height: 26px;
+                            margin-left: 42px;
+                            margin-right: 18px;
+                        }
+                        .step_time_text_top{
+                            font-size: 28px;
+                            color: #37d3cb;
+                        }
+                        .step_time_text{
+                            font-size: 26px; 
+                            color: #333333;
+                        }
+                    }
+                    .step_text{
+                        margin-top: 16px;
+                        margin-left:86px;
+                        font-size: 26px; 
+                        color: #333333;
+                    }
+                }
+            }
+           
+        }
+    }
+}

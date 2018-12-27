@@ -1,0 +1,200 @@
+.page .flex_page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.search {
+  height: 108px;
+  width: 100%;
+  border-bottom-color: #eeeeee;
+  border-bottom-width: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search .search_box {
+  width: 634px;
+  height: 56px;
+  border-color: #eeeeee;
+  border-width: 1px;
+  border-radius: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search .search_box .city {
+  width: 130px;
+  height: 30px;
+  border-right-color: #aaaaaa;
+  border-right-width: 2px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.search .search_box .city .city_name {
+  color: #333333;
+  font-size: 26px;
+  height: 30px;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+.search .search_box .city .city_more {
+  margin-left: 12px;
+  width: 14px;
+  height: 14px;
+}
+.search .search_box .search_btn {
+  width: 400px;
+  height: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 72px;
+}
+.search .search_box .search_btn .search_icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+}
+.search .search_box .search_btn .search_text {
+  font-size: 24px;
+  color: #aaaaaa;
+}
+.tabbar_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* box-shadow: 10px 10px 5px #888888; */
+  border-top-width: 1px;
+  border-top-color: #eeeeee;
+  height: 98px;
+  width: 100%;
+}
+.tabbar_box .tabbar_index {
+  margin-left: 146px;
+  width: 44px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tabbar_box .tabbar_index .index_icon {
+  width: 44px;
+  height: 44px;
+}
+.tabbar_box .tabbar_index .index_text {
+  font-size: 20px;
+  color: #888888;
+}
+.tabbar_box .tabbar_my {
+  margin-right: 146px;
+  width: 44px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tabbar_box .tabbar_my .my_icon {
+  width: 44px;
+  height: 44px;
+}
+.tabbar_box .tabbar_my .my_text {
+  font-size: 20px;
+  color: #888888;
+}
+.content {
+  flex: 1;
+}
+.job_item {
+  background-color: #ffffff;
+  height: 160px;
+  border-bottom-color: #eeeeee;
+  border-bottom-width: 1px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.job_item .job_item_icon {
+  width: 80px;
+  height: 80px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.job_item .job_itme_box {
+  width: 520px;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+.job_item .job_itme_box .job_item_name {
+  color: #333333;
+  font-size: 28px;
+  text-align: left;
+}
+.job_item .job_itme_box .job_item_box2 {
+  display: flex;
+  justify-content: space-between;
+}
+.job_item .job_itme_box .job_item_box2 .job_item_address {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.job_item .job_itme_box .job_item_box2 .job_item_address .job_item_address_icon {
+  width: 22px;
+  width: 18px;
+  margin-right: 14px;
+}
+.job_item .job_itme_box .job_item_box2 .job_item_address .job_item_address_text {
+  width: 200px;
+  color: #888888;
+  font-size: 22px;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+.job_item .job_itme_box .job_item_box2 .job_item_wage {
+  color: #37d3cb;
+  font-size: 40px;
+}
+.job_item .job_itme_box .job_item_box2 .job_item_unit {
+  margin-left: 12px;
+  font-size: 28px;
+  color: #37d3cb;
+}
+.job_item .job_itme_box .job_item_box3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.job_item .job_itme_box .job_item_box3 .job_item_time {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.job_item .job_itme_box .job_item_box3 .job_item_time .job_item_time_icon {
+  width: 18px;
+  margin-right: 12px;
+}
+.job_item .job_itme_box .job_item_box3 .job_item_time .job_item_time_text {
+  font-size: 22px;
+  color: #888888;
+}
+.job_item .job_itme_box .job_item_box3 .position {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #eeeeee;
+  height: 32px;
+  border-radius: 32px;
+  padding: 0 10px;
+}
+.job_item .job_itme_box .job_item_box3 .position .position_text {
+  color: #888888;
+  font-size: 20px;
+  background-color: transparent;
+}
+.load-more {
+  display: flex;
+  justify-content: center;
+}

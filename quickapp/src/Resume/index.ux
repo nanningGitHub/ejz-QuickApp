@@ -1,0 +1,607 @@
+<template>
+    <div class="page">
+        <div class="flex_page">
+            <div class="box">
+                <div class="header" onclick="Imageuploading">
+                    <div class="head">
+                        <image src="{{headerFile}}" class="head_icon"></image>
+                    </div>
+                    <div class="head_text">
+                        <text class="head_text_text">设置头像</text>
+                        <image src="img/into_icon.png" class="into_icon"></image>
+                    </div>
+                </div>
+                <div class="reminder_box">
+                    <text class="reminder">* 为必填项 完善简历提高10倍的录取速度哦</text>
+                </div>
+                <div class="basic module">
+                    <div class="item name">
+                        <text class="xinghao">*</text>
+                        <text class="item_text"> 姓名</text>
+                        <input class="item_input" type="text" placeholder="请输入姓名" value="{{realName}}" onchange="realNamechange"></input>
+                    </div>
+                    <div class="line"></div>
+                    <div class="item gender">
+                        <text class="xinghao">*</text>
+                        <text class="item_text"> 性别</text>
+                        <picker class="picker gender_box" type="text" range="{{genderlist}}" value="{{gender}}" onchange="genderclick" />
+                    </div>
+                    <div class="line"></div>
+                    <div class="item birthday">
+                        <text class="xinghao">*</text>
+                        <text class="item_text"> 出生年月</text>
+                        <picker class="picker " type="date" start="1950-1-1" end="2020-12-31" value="{{birthdaytime}}" onchange="birthdayclick" />
+                    </div>
+                    <div class="line"></div>
+                    <div class="item">
+                        <text class="xinghao hidden">*</text>
+                        <text class="item_text"> 身高(cm)</text>
+                        <input class="item_input" type="number" placeholder="请输入身高" value="{{height}}" onchange="heightchange"></input>
+                    </div>
+                    <div class="line"></div>
+                    <div class="item">
+                        <text class="xinghao hidden">*</text>
+                        <text class="item_text"> 体重(kg)</text>
+                        <input class="item_input" type="number" placeholder="请输入体重" value="{{weight}}" onchange="weightchange"></input>
+                    </div>
+                </div>
+                <div class="education module">
+                    <div class="item">
+                        <text class="xinghao">*</text>
+                        <text class="item_text"> 教育情况</text>
+                        <picker class="picker gender_box" type="text" range="{{educationconditionlist}}" value="{{educationcondition}}" onchange="educationconditionclick"
+                        />
+                    </div>
+                    <div class="line"></div>
+                    <div class="item">
+                        <text class="xinghao">*</text>
+                        <text class="item_text"> 毕业学校</text>
+                        <input class="item_input" type="text" placeholder="请输入学校" value="{{school}}" onchange="schoolchange"></input>
+                    </div>
+                    <div class="line"></div>
+                    <div class="item">
+                        <text class="xinghao">*</text>
+                        <text class="item_text"> 入学年份</text>
+                        <picker class="picker " type="date" start="1950" end="2020" value="{{startschooltime}}" selected="yyyy" onchange="startschool"
+                        />
+                    </div>
+                    <div class="line"></div>
+                    <div class="item">
+                        <text class="xinghao">*</text>
+                        <text class="item_text"> 学历</text>
+                        <picker class="picker gender_box" type="text" range="{{educationlist}}" value="{{education}}" onchange="educationclick" />
+                    </div>
+                    <div class="line"></div>
+                    <div class="item">
+                        <text class="xinghao">*</text>
+                        <text class="item_text"> 专业</text>
+                        <input class="item_input" type="text" placeholder="请输入专业" value="{{profession}}" onchange="professionchange"></input>
+                    </div>
+                </div>
+                <div class="location module">
+                    <div class="item location_box">
+                        <div class="location_box_item">
+                            <text class="xinghao">*</text>
+                            <picker class="picker_location" type="text" range="{{newprovincelist}}" selected="" value="{{province}}" onchange="provinceonchange"
+                            />
+                            <image class="down_img" src="img/down_icon.png"></image>
+                        </div>
+                        <div class="location_box_item">
+                            <text class="xinghao">*</text>
+                            <picker class="picker_location " type="text" range="{{newchildrencitylist}}" selected="" value="{{childrencity}}" onchange="childschange"
+                            />
+                            <image class="down_img" src="img/down_icon.png"></image>
+                        </div>
+                        <div class="location_box_item">
+                            <text class="xinghao">*</text>
+                            <picker class="picker_location " type="text" range="{{newarealist}}" selected="" value="{{area}}" onchange="areachange" />
+                            <image class="down_img" src="img/down_icon.png"></image>
+                        </div>
+                    </div>
+                </div>
+                <div class="relation module ">
+                    <div class="item">
+                        <text class="xinghao hidden">*</text>
+                        <text class="item_text"> 邮箱</text>
+                        <input class="item_input" type="text" placeholder="请输入邮箱" value="{{email}}" onchange="emailchange"></input>
+                    </div>
+                    <div class="line"></div>
+                    <div class="item">
+                        <text class="xinghao hidden">*</text>
+                        <text class="item_text"> QQ</text>
+                        <input class="item_input" type="number" placeholder="请输入QQ" value="{{qq}}" onchange="qqchange"></input>
+                    </div>
+                    <div class="item">
+                        <text class="xinghao">*</text>
+                        <text class="item_text"> 电话</text>
+                        <input class="item_input" type="number" maxlength="11" placeholder="请输入电话" value="{{mobile}}" onchange="mobilechange"></input>
+                    </div>
+                </div>
+                <div class="expectjob module">
+                    <div class="expectjob_title">
+                        <div class="item">
+                            <text class="xinghao ">*</text>
+                            <text class="item_text"> 期望职位</text>
+                            <text class="item_input expectjob_title_text">快速点亮你的闪光点</text>
+                        </div>
+                    </div>
+                    <div class="expectjob_list">
+                        <text class="expectjob_item {{$item.flag?'expectjob_item_active':'1'}}" for="{{jobtypeList}}" onclick="expectjobclick($idx)">{{$item.key}}</text>
+                    </div>
+                </div>
+                <div class="experience module">
+                    <text class="experience_title">工作经验</text>
+                    <textarea class="experience_text" maxlength="200" placeholder="请输入工作经历，200字以内" onchange="experiencechange">
+                            {{experience}}
+                    </textarea>
+                </div>
+                <div class="agreement">
+                    <image class="agreement_icon" src="img/already_icon.png"></image>
+                    <text class="agreement_text">保存并同意</text>
+                    <a class="agreement_a">《简历协议》</a>
+                </div>
+            </div>
+            <div class="save_box" onclick="saveclick">
+                <text class="save_text">保存简历</text>
+            </div>
+        </div>
+    </div>
+</template>
+<style lang="less">
+    @import './less/index.less';
+</style>
+<script>
+    import {
+        osstoken,
+        uploadingheadimg,
+        getProvince,
+        getChildrenCity,
+        getArea,
+        editUserInfo,
+        getmainJobType,
+        updateDegree
+
+    } from '../Common/Api/resume'
+
+    export default {
+        data: {
+            token: '',
+            headerFile: '',
+            realName: '',
+            genderlist: ["男", "女"],
+            gender: "请选择",
+            birthdaytime: '请选择',
+            height: '',
+            weight: '',
+            educationconditionlist: ['在校生', '已毕业'],
+            educationcondition: '请选择',
+            school: "",
+            startschooltime: '请选择',
+            educationlist: ['小学', '中学', '高中', '专科', '本科', '硕士', '博士'],
+            education: "请选择",
+            profession: '',
+
+            oldprovincelist: [],
+            newprovincelist: [],
+            province: '请选择',
+            provinceId: '',
+
+            oldchildrencitylist: [],
+            newchildrencitylist: [],
+            childrencity: '请选择',
+            cityId: '',
+
+            oldarealist: [],
+            newarealist: [],
+            area: '请选择',
+            areaId: '',
+
+            experience: "",
+            email: "",
+            qq: '',
+            mobile: '',
+
+            jobtypeList: [],
+            jobTypeId: '',
+            ossdata: {},
+            resumedata: {}
+        },
+        onReady() {
+            this.getProvince();
+            this.osstoken();
+            this.echoresume();
+            this.getmainJobType();
+        },
+        osstoken() {
+            osstoken()
+                .then((data) => {
+                    if (!data.code) {
+                        this.ossdata = data.dataMap
+                    } else {
+                        this.$app.$def.prompt.showToast({
+                            message: data.msg
+                        })
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+        },
+        getmainJobType() {
+            getmainJobType()
+                .then((data) => {
+                    data.dataMap.jobtypeList.map((item) => {
+                        if (this.jobTypeId.includes(item.value)) {
+                            item.flag = true;
+                        } else {
+                            item.flag = false;
+                        }
+
+                    })
+                    this.jobtypeList = data.dataMap.jobtypeList;
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+        },
+        Imageuploading() {
+            var that = this;
+            this.$app.$def.media.pickImage({
+                success: function (data) {
+                    that.headerFile = data.uri;
+                    // that.uploadingheadimg()
+                }
+            })
+        },
+        uploadingheadimg() {
+            var that = this;
+            console.log(that.headerFile)
+            this.$app.$def.request.upload({
+                url: 'http://localtestapi.ejzhi.com/oss/uploadFile.do',
+
+                files: [
+                    {
+                        uri: that.headerFile
+                    }
+                ],
+                data: [
+                    {
+                        name: 'param1',
+                        value: 'value1',
+                        accessid: that.ossdata.accessid,
+                        expire: that.ossdata.expire,
+                        fileName: that.ossdata.fileName,
+                        host: that.ossdata.host,
+                        policy: that.ossdata.policy,
+                        signature: that.ossdata.signature,
+                    }
+                ],
+                success: function (data) {
+                    console.log('handling success')
+                    console.log(data)
+                },
+                fail: function (data, code) {
+                    console.log(`handling fail, code = ${code}`)
+                }
+            })
+        },
+        realNamechange(e) {
+            this.realName = e.value;
+        },
+        genderclick(e) {
+            this.gender = e.newValue
+        },
+        birthdayclick(e) {
+            this.birthdaytime = e.year + '-' + (e.month + 1) + '-' + e.day;
+        },
+        heightchange(e) {
+            this.height = e.value
+        },
+        weightchange(e) {
+            this.weight = e.value;
+        },
+        educationconditionclick(e) {
+            this.educationcondition = e.newValue
+        },
+        schoolchange(e) {
+            this.school = e.value;
+        },
+        startschool(e) {
+            this.startschooltime = e.year;
+        },
+        professionchange(e) {
+            this.profession = e.value;
+        },
+
+        educationclick(e) {
+            this.education = e.newValue;
+        },
+
+        provinceonchange(e) {
+            this.province = e.newValue;
+            this.provinceId = this.oldprovincelist[e.newSelected].id;
+            this.getChildrenCity();
+            this.childrencity = '请选择';
+            this.area = '请选择'
+            this.newchildrencitylist = [];
+            this.newarealist = [];
+        },
+        childschange(e) {
+            this.childrencity = e.newValue;
+            this.cityId = this.oldchildrencitylist[e.newSelected].id;
+            this.getArea();
+            this.area = '请选择'
+            this.newarealist = [];
+        },
+        areachange(e) {
+            this.area = e.newValue;
+            this.areaId = this.oldarealist[e.newSelected].id;
+        },
+        getProvince() {
+            getProvince()
+                .then((data) => {
+                    if (!data.code) {
+                        let oldprovincelist = data.dataMap.CityList;
+                        let newprovincelist = [];
+                        this.oldprovincelist = data.dataMap.CityList;
+                        oldprovincelist.map(item => {
+                            newprovincelist.push(item.name)
+                        })
+                        this.newprovincelist = newprovincelist
+                    } else {
+                        this.$app.$def.prompt.showToast({
+                            message: data.msg
+                        })
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+        },
+        getChildrenCity() {
+            getChildrenCity(this.provinceId)
+                .then((data) => {
+                    if (!data.code) {
+                        let oldchildrencitylist = data.dataMap.childsList;
+                        let newchildrencitylist = [];
+                        this.oldchildrencitylist = oldchildrencitylist;
+                        oldchildrencitylist.map(item => {
+                            newchildrencitylist.push(item.name)
+                        })
+                        this.newchildrencitylist = newchildrencitylist;
+                    } else {
+                        this.$app.$def.prompt.showToast({
+                            message: data.msg
+                        })
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+        },
+        getArea() {
+            getArea(this.cityId)
+                .then((data) => {
+                    if (!data.code) {
+                        let oldarealist = data.dataMap.childsList;
+                        let newarealist = [];
+                        this.oldarealist = oldarealist;
+                        oldarealist.map(item => {
+                            newarealist.push(item.name)
+                        })
+                        this.newarealist = newarealist
+                    } else {
+                        this.$app.$def.prompt.showToast({
+                            message: data.msg
+                        })
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+        },
+        emailchange(e) {
+            this.email = e.value;
+        },
+        qqchange(e) {
+            this.qq = e.value
+        },
+        mobilechange(e) {
+            this.mobile = e.value;
+        },
+        experiencechange(e) {
+            this.experience = e.value;
+        },
+        expectjobclick(index) {   //期望职位
+            this.jobtypeList[index].flag = !this.jobtypeList[index].flag;
+        },
+        echoresume() {
+            var that = this;
+            this.$app.$def.storage.get({
+                key: 'user',
+                success: function (data) {
+                    that.token = JSON.parse(data).dataMap.token
+                }
+            })
+            this.$app.$def.storage.get({
+                key: 'resumedata',
+                success: function (data) {
+                    if (data) {
+                        let resumedata = JSON.parse(data);
+                        that.headerFile = resumedata.headerFile;
+                        that.realName = resumedata.realName;
+                        that.gender = resumedata.gender ? '男' : '女';
+                        that.birthdaytime = that.$app.$def.formatTime(resumedata.birthdayDate, 'Y-M-D');
+                        that.height = resumedata.height;
+                        that.weight = resumedata.weight;
+                        that.educationcondition = resumedata.eduSituation ? "在校生" : "在校生";
+                        that.school = resumedata.school;
+                        that.startschooltime = that.$app.$def.formatTime(resumedata.startSchool, 'Y');
+                        that.education = resumedata.degree;
+                        that.profession = resumedata.profession;
+                        that.province = resumedata.address.province;
+                        that.provinceId = resumedata.provinceId;
+                        that.childrencity = resumedata.address.city;
+                        that.cityId = resumedata.cityId;
+                        that.area = resumedata.address.area;
+                        that.areaId = resumedata.areaId;
+                        that.email = resumedata.email;
+                        that.qq = resumedata.qq;
+                        that.mobile = resumedata.mobile;
+                        that.experience = resumedata.experience;
+                        that.jobTypeId = resumedata.jobtypeids;
+                    } else {
+
+                    }
+
+                },
+                fail: function (data, code) {
+                    console.log(`handling fail, code = ${code}`)
+                }
+            })
+
+        },
+        saveclick() {   //点击保存
+            let jobtypeIds = []
+            this.jobtypeList.map((item) => {
+                if (item.flag) {
+                    jobtypeIds.push(item.value)
+                } else {
+                    return
+                }
+            })
+            let jobTypeId = jobtypeIds.join()
+            this.jobTypeId = jobTypeId;
+            if (this.headImageName == '') {
+                this.$app.$def.prompt.showToast({
+                    message: "请选择头像"
+                })
+            } else if (this.realName == '') {
+                this.$app.$def.prompt.showToast({
+                    message: "请填写姓名"
+                })
+            } else if (this.gender == '') {
+                this.$app.$def.prompt.showToast({
+                    message: "请选择性别"
+                })
+            } else if (this.birthdaytime == '') {
+                this.$app.$def.prompt.showToast({
+                    message: "请填写生日"
+                })
+            } else if (this.educationcondition == '') {
+                this.$app.$def.prompt.showToast({
+                    message: "请选择教育情况"
+                })
+            } else if (this.school == '') {
+                this.$app.$def.prompt.showToast({
+                    message: "请填写学校"
+                })
+            } else if (this.startschooltime == '') {
+                this.$app.$def.prompt.showToast({
+                    message: "请选择入学时间"
+                })
+            } else if (this.education == '') {
+                this.$app.$def.prompt.showToast({
+                    message: "请选择学历"
+                })
+            } else if (this.profession == '') {
+                this.$app.$def.prompt.showToast({
+                    message: "请填写专业"
+                })
+            } else if (this.province == '请选择') {
+                this.$app.$def.prompt.showToast({
+                    message: "请选择省级城市"
+                })
+            } else if (this.city == '请选择') {
+                this.$app.$def.prompt.showToast({
+                    message: "请选择市级城市"
+                })
+            } else if (this.area == '请选择') {
+                this.$app.$def.prompt.showToast({
+                    message: "请选择县级城市"
+                })
+            } else if (this.mobile == '') {
+                this.$app.$def.prompt.showToast({
+                    message: "请填写电话号码"
+                })
+            } else if (this.jobTypeId == '') {
+                this.$app.$def.prompt.showToast({
+                    message: "请选择期望职位"
+                })
+            } else {
+                this.editUserInfo()
+            }
+        },
+        editUserInfo() {
+            editUserInfo({
+                token: this.token,
+                headImageName: this.headerFile,
+                realName: this.realName,
+                gender: this.gender == "男" ? "1" : "0",
+                birthday: this.birthdaytime,
+                height: this.height,
+                weight: this.weight,
+                eduSituation: this.educationcondition == "在校生" ? "0" : "1",
+                school: this.school,
+                startSchool: this.startschooltime,
+                degree: this.education,
+                profession: this.profession,
+                provinceId: this.provinceId,
+                cityId: this.cityId,
+                areaId: this.areaId,
+                email: this.email,
+                qq: this.qq,
+                mobile: this.mobile,
+                jobTypeId: this.jobTypeId,
+                experience: this.experience
+            })
+                .then((data) => {
+                    if (!data.code) {
+                        this.updateDegree()
+                    } else {
+                        this.$app.$def.prompt.showToast({
+                            message: data.msg
+                        })
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+
+        },
+        updateDegree() {
+            updateDegree(this.token, 0)
+                .then((data) => {
+                    if (!data.code) {
+                        this.$app.$def.router.replace({
+                            uri: '/ResumeShow'
+                        })
+
+                    } else {
+                        this.$app.$def.prompt.showToast({
+                            message: data.msg
+                        })
+                    }
+                })
+                .catch((err) => {
+                    this.$app.$def.prompt.showToast({
+                        message: "请检查您的网络"
+                    })
+                })
+
+        }
+
+    }
+</script>

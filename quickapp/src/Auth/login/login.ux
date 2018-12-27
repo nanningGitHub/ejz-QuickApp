@@ -1,0 +1,9 @@
+<template>
+
+</template>
+<style lang="less">
+    @import './less/index.css';
+</style>
+<script>
+
+</script>

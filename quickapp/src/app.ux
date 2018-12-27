@@ -1,0 +1,29 @@
+<script>
+  /**
+   * 应用级别的配置，供所有页面公用
+   */
+  import util from './util'
+  import clipboard from '@system.clipboard'
+  import prompt from '@system.prompt'
+  import router from '@system.router'
+  import storage from '@system.storage'
+  import share from '@system.share'
+  import geolocation from '@system.geolocation'
+  import media from '@system.media'
+  import request from '@system.request'   //上传
+
+  export default {
+    clipboard: clipboard,
+    prompt: prompt,
+    router: router,
+    storage: storage,
+    share: share,
+    geolocation: geolocation,
+    media: media,
+    request: request,
+    showMenu: util.showMenu,
+    intoEditResume: util.intoEditResume,
+    createShortcut: util.createShortcut,
+    formatTime: util.formatTime,
+  }
+</script>
