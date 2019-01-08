@@ -73,8 +73,6 @@
                                 message: data.msg
                             })
                         } else {
-                            // let Length = router.getLength()
-                            // router.back(Length)
                             router.back()
                         }
                     })

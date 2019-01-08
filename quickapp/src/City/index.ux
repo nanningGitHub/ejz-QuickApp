@@ -4,7 +4,7 @@
             <div class="search_box">
                 <div class="search_bg">
                     <image class="search_icon" src="img/search_icon.png"></image>
-                    <input class="search_input" type="text" value="" placeholder="城市 / 拼音" onchange="inputKeyname" />
+                    <input class="search_input" placeholder="城市 / 拼音" onchange="inputKeyname" />
                 </div>
                 <text class="seach_btn" onclick="getCitys">确定</text>
             </div>
@@ -61,6 +61,7 @@
         onShow() {
             this.gethotCitys();
             this.getCitys();
+            this.$app.$def.refresh = true;
         },
         inputKeyname({
             value

@@ -1,7 +1,1202 @@
 (function(){
   
   var createPageHandler = function() {
-    return !function(e){function t(n){if(o[n])return o[n].exports;var r=o[n]={i:n,l:!1,exports:{}};return e[n].call(r.exports,r,r.exports,t),r.l=!0,r.exports}var o={};t.m=e,t.c=o,t.d=function(e,o,n){t.o(e,o)||Object.defineProperty(e,o,{configurable:!1,enumerable:!0,get:n})},t.n=function(e){var o=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(o,"a",o),o},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="",t(t.s=58)}({0:function(e,t,o){"use strict";function n(){return new Promise(function(e,t){c.get({key:"auth",success:function(t){d.Cookie=t,e(!0)},fail:function(t,o){e(!1)}})})}function r(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,o=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"get";return console.log("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"),console.log("┃ url: ",l+e),console.log("┃ method: ",o),console.log("┃ data: ",JSON.stringify(t)),console.log("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"),new Promise(function(n,r){u.fetch({url:l+e,data:t,header:d,method:o,success:function(e){n(e)},fail:function(e,t){r(e)}})})}function i(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,o=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"get",i=arguments.length>3&&void 0!==arguments[3]&&arguments[3];return n().then(function(n){return n||i?r(e,t,o):new Promise(function(e,t){t("请先登录！")})})}function a(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,o=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{};return o.withAuth?i(e,t,"post",o.canSkip):r(e,t,"post")}function s(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,o=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{};return o.withAuth?i(e,t,"get",o.canSkip):r(e,t,"get")}Object.defineProperty(t,"__esModule",{value:!0});var u=$app_require$("@app-module/system.fetch"),c=$app_require$("@app-module/system.storage"),l="http://localtestapi.ejzhi.com/",d={};t.default={login:function(e){return s("api/user/login.do",e)},getCode:function(e){return s("api/user/sendRegisterSMS.do",e)},register:function(e){return s("api/user/register.do",e)},backCode:function(e){return s("api/user/sendFindBackSMS.do",e)},forget:function(e){return s("api/user/findPassword.do",e)},getJobList:function(e){return s("api/job/offline/getList.do",e)},getJobDetails:function(e){return s("api/job/offline/getSingle.do",e)},getisdeliver:function(e){return s("api/job/offline/getisdeliver.do",e)},deliver:function(e){return s("api/job/offline/deliverResume.do",e)},getEnterprise:function(e){return s("api/enterprise/getEnterprise.do",e)},gethotWords:function(e){return s("api/job/offline/getHotWord.do",e)},gethotCitys:function(e){return s("api/city/getHotCity.do",e)},getCitys:function(e){return s("api/city/getCitysForGPS.do",e)},getCityName:function(e){return a("god/map/getCityName.do",e)},showUserResume:function(e){return s("api/user/showUserResume.do",e)},getData:function(e){return s("api/user/getData.do",e)},getJobOfflineList:function(e){return s("api/jobRequest/getJobOfflineList.do",e)},getDaiLuYongList:function(e){return s("api/jobRequest/getDaiLuYongList.do",e)},deldeliverResume:function(e){return a("api/job/offline/deldeliverResume.do",e)},getDaiShangGangList:function(e){return s("api/jobRequest/getDaiShangGangList.do",e)},getDaiJieSuanList:function(e){return s("api/jobRequest/getDaiJieSuanList.do",e)},getYiJieSuanList:function(e){return s("api/jobRequest/getYiJieSuanList.do",e)},getShangGangJiLu:function(e){return s("api/jobRequest/getShangGangJiLu.do",e)},osstoken:function(e){return s("ali/osstoken.do",e)},getmainJobType:function(e){return s("api/job/offline/mainJobType.do",e)},getProvince:function(e){return s("api/city/getProvince.do",e)},getChildrenCity:function(e){return s("api/city/getChildrenCity.do",e)},getArea:function(e){return s("api/city/getArea.do",e)},editUserInfo:function(e){return a("api/user/editUserInfo.do",e)},updateDegree:function(e){return a("api/user/updateDegree.do",e)},getCollectArticle:function(e){return s("lg/collect/list/"+e+"/json",null,{withAuth:!0})},collectArticle:function(e){return a("lg/collect/"+e+"/json",null,{withAuth:!0})},collectArticleAdd:function(e){return a("lg/collect/add/json",e,{withAuth:!0})},uncollectArticle:function(e){return a("lg/uncollect_originId/"+e+"/json",null,{withAuth:!0})},uncollect:function(e,t){return a("lg/uncollect/"+e+"/json",{originId:t},{withAuth:!0})},getCollectWeb:function(){return s("lg/collect/usertools/json",null,{withAuth:!0})},collectWeb:function(e){return a("lg/collect/addtool/json",e,{withAuth:!0})},editCollectWeb:function(e){return a("lg/collect/updatetool/json",e,{withAuth:!0})},deleteCollectWeb:function(e){return a("lg/collect/deletetool/json",{id:e},{withAuth:!0})}}},2:function(e,t,o){"use strict";function n(e,t){return c.default.login({phoneNumber:e,password:t}).then(function(e){var t=JSON.parse(e.data);return-1===t.errorCode&&Promise.reject(t.errorMsg),l.set({key:"auth",Data:e.headers["Set-Cookie"],success:function(e){console.log("cookies保存成功")}}),l.set({key:"user",value:t}),l.set({key:"isLogin",value:!0}),Promise.resolve(t)}).catch(function(e){return Promise.reject("登录失败")})}function r(e,t,o){return c.default.register({phoneNumber:e,validateCode:t,password:o}).then(function(e){var t=JSON.parse(e.data);return-1===t.errorCode&&Promise.reject(t.errorMsg),Promise.resolve(t)}).catch(function(e){return Promise.reject("注册失败")})}function i(e,t,o){return c.default.forget({phoneNumber:e,validateCode:t,password:o}).then(function(e){var t=JSON.parse(e.data);return-1===t.errorCode&&Promise.reject(t.errorMsg),Promise.resolve(t)}).catch(function(e){return Promise.reject("注册失败")})}function a(e){return c.default.getCode({phoneNumber:e}).then(function(e){var t=JSON.parse(e.data);return-1===t.errorCode&&Promise.reject(t.errorMsg),Promise.resolve(t)}).catch(function(e){return Promise.reject("获取失败")})}function s(e){return c.default.backCode({phoneNumber:e}).then(function(e){var t=JSON.parse(e.data);return-1===t.errorCode&&Promise.reject(t.errorMsg),Promise.resolve(t)}).catch(function(e){return Promise.reject("获取失败")})}Object.defineProperty(t,"__esModule",{value:!0}),t.login=n,t.register=r,t.forget=i,t.getCode=a,t.backCode=s;var u=o(0),c=function(e){return e&&e.__esModule?e:{default:e}}(u),l=$app_require$("@app-module/system.storage")},58:function(e,t,o){var n=o(59),r=o(60),i=o(61);$app_define$("@app-component/index",[],function(e,t,o){i(o,t,e),t.__esModule&&t.default&&(o.exports=t.default),o.exports.template=n,o.exports.style=r}),$app_bootstrap$("@app-component/index",{packagerVersion:"0.0.5"})},59:function(e,t){e.exports={type:"div",attr:{},classList:["page"],children:[{type:"div",attr:{},classList:["flex_page"],children:[{type:"div",attr:{},classList:["forget_box"],children:[{type:"div",attr:{},classList:["phone_box"],children:[{type:"input",attr:{type:"number",value:function(){return this.phoneNumber},placeholder:"请输入11位手机号码"},classList:["phone_nub"],events:{change:"onInputPhone"}}]},{type:"div",attr:{},classList:["code_box"],children:[{type:"input",attr:{type:"number",value:function(){return this.validateCode},placeholder:"请输入验证码"},classList:["code_nub"],events:{change:"onInputCode"}},{type:"text",attr:{disabled:function(){return this.disabled},value:function(){return this.codebtn}},classList:["code_btn"],events:{click:"backCode"}}]},{type:"div",attr:{},classList:["password_box"],children:[{type:"input",attr:{type:"password",value:function(){return this.password},placeholder:"请输入密码 (6-16位数字字母组合)"},classList:["password_nub"],events:{change:"onInputPassword"}}]},{type:"div",attr:{},classList:["forget_btn"],events:{click:"forget"},children:[{type:"text",attr:{value:"重置密码"},classList:["forget_btn_text"]}]}]}]}]}},60:function(e,t){e.exports={".page .flex_page":{width:"100%",display:"flex",flexDirection:"column",_meta:{ruleDef:[{t:"a",n:"class",i:!1,a:"element",v:"page"},{t:"d"},{t:"a",n:"class",i:!1,a:"element",v:"flex_page"}]}},".forget_box":{width:"100%",paddingTop:"0px",paddingRight:"58px",paddingBottom:"0px",paddingLeft:"58px",display:"flex",flexDirection:"column"},".forget_box .phone_box":{height:"120px",width:"100%",borderBottomColor:"#eeeeee",borderBottomWidth:"1px",_meta:{ruleDef:[{t:"a",n:"class",i:!1,a:"element",v:"forget_box"},{t:"d"},{t:"a",n:"class",i:!1,a:"element",v:"phone_box"}]}},".forget_box .phone_box .phone_nub":{width:"100%",fontSize:"28px",_meta:{ruleDef:[{t:"a",n:"class",i:!1,a:"element",v:"forget_box"},{t:"d"},{t:"a",n:"class",i:!1,a:"element",v:"phone_box"},{t:"d"},{t:"a",n:"class",i:!1,a:"element",v:"phone_nub"}]}},".forget_box .code_box":{height:"120px",width:"100%",borderBottomColor:"#eeeeee",borderBottomWidth:"1px",display:"flex",justifyContent:"space-between",alignItems:"center",_meta:{ruleDef:[{t:"a",n:"class",i:!1,a:"element",v:"forget_box"},{t:"d"},{t:"a",n:"class",i:!1,a:"element",v:"code_box"}]}},".forget_box .code_box .code_nub":{width:"460px",fontSize:"28px",_meta:{ruleDef:[{t:"a",n:"class",i:!1,a:"element",v:"forget_box"},{t:"d"},{t:"a",n:"class",i:!1,a:"element",v:"code_box"},{t:"d"},{t:"a",n:"class",i:!1,a:"element",v:"code_nub"}]}},".forget_box .code_box .code_btn":{width:"154px",fontSize:"28px",color:"#cccccc",_meta:{ruleDef:[{t:"a",n:"class",i:!1,a:"element",v:"forget_box"},{t:"d"},{t:"a",n:"class",i:!1,a:"element",v:"code_box"},{t:"d"},{t:"a",n:"class",i:!1,a:"element",v:"code_btn"}]}},".forget_box .password_box":{height:"120px",width:"100%",borderBottomColor:"#eeeeee",borderBottomWidth:"1px",_meta:{ruleDef:[{t:"a",n:"class",i:!1,a:"element",v:"forget_box"},{t:"d"},{t:"a",n:"class",i:!1,a:"element",v:"password_box"}]}},".forget_box .password_box .password_nub":{width:"100%",fontSize:"28px",_meta:{ruleDef:[{t:"a",n:"class",i:!1,a:"element",v:"forget_box"},{t:"d"},{t:"a",n:"class",i:!1,a:"element",v:"password_box"},{t:"d"},{t:"a",n:"class",i:!1,a:"element",v:"password_nub"}]}},".forget_box .forget_btn":{marginTop:"64px",width:"100%",height:"100px",backgroundColor:"#37d3cb",borderRadius:"10px",display:"flex",justifyContent:"center",alignItems:"center",_meta:{ruleDef:[{t:"a",n:"class",i:!1,a:"element",v:"forget_box"},{t:"d"},{t:"a",n:"class",i:!1,a:"element",v:"forget_btn"}]}},".forget_box .forget_btn .forget_btn_text":{fontSize:"28px",color:"#fefefe",_meta:{ruleDef:[{t:"a",n:"class",i:!1,a:"element",v:"forget_box"},{t:"d"},{t:"a",n:"class",i:!1,a:"element",v:"forget_btn"},{t:"d"},{t:"a",n:"class",i:!1,a:"element",v:"forget_btn_text"}]}}}},61:function(e,t,o){e.exports=function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},i=n("@app-module/system.router"),a=function(e){return e&&e.__esModule?e:{default:e}}(i),s=o(2);t.default={data:{codebtn:"获取验证码",currentTime:61,disabled:!1,phoneNumber:"",validateCode:"",password:""},onInputPhone:function(e){var t=e.value;this.phoneNumber=t},onInputCode:function(e){var t=e.value;this.validateCode=t},onInputPassword:function(e){var t=e.value;this.password=t},backCode:function(){var e=this;/^[1][3,4,5,7,8,9][0-9]{9}$/.test(this.phoneNumber)?(0,s.backCode)(this.phoneNumber).then(function(t){if(0!==t.code)e.$app.$def.prompt.showToast({message:t.msg});else var o=e,n=setInterval(function(){o.currentTime--,o.codebtn=o.currentTime+"秒",o.currentTime<=0&&(clearInterval(n),o.codebtn="重新发送",o.currentTime="61",o.disabled="false")},1e3)}).catch(function(t){e.$app.$def.prompt.showToast({message:"请检查您的网络"})}):this.$app.$def.prompt.showToast({message:"请输入手机号码"})},forget:function(){var e=this,t=/^[1][3,4,5,7,8,9][0-9]{9}$/,o=/^\d{6}$/,n=/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;t.test(this.phoneNumber)?o.test(this.validateCode)?n.test(this.password)?(0,s.forget)(this.phoneNumber,this.validateCode,this.password).then(function(t){0!==t.code?e.$app.$def.prompt.showToast({message:t.msg}):a.default.back()}).catch(function(t){e.$app.$def.prompt.showToast({message:"请检查您的网络"})}):this.$app.$def.prompt.showToast({message:"请提高密码安全性"}):this.$app.$def.prompt.showToast({message:"请输入验证码"}):this.$app.$def.prompt.showToast({message:"请输入手机号码"})}};var u=t.default||e.exports,c=["public","protected","private"];if(u.data&&c.some(function(e){return u[e]}))throw new Error('页面VM对象中的属性data不可与"'+c.join(",")+'"同时存在，请使用private替换data名称');u.data||(u.data={},u._descriptor={},c.forEach(function(e){var t=r(u[e]);if("object"===t){u.data=Object.assign(u.data,u[e]);for(var o in u[e])u._descriptor[o]={access:e}}else"function"===t&&console.warn("页面VM对象中的属性"+e+"的值不能是函数，请使用对象")}))}}});
+    return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 58);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ 0:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var fetch = $app_require$('@app-module/system.fetch');
+var storage = $app_require$('@app-module/system.storage');
+
+var API_ROOT = 'http://openapi.ejzhi.com/';
+// var API_ROOT = 'http://localtestapi.ejzhi.com/'
+var headers = {};
+
+// function getAuth(next) {
+//   storage.get({
+//     key: 'auth',
+//     success: function(data) {
+//       headers.Cookie = data
+//       next(true)
+//     },
+//     fail: function(data, code) {
+//       next(false)
+//     }
+//   })
+// }
+
+function getAuth() {
+    return new Promise(function (resolve, reject) {
+        storage.get({
+            key: 'auth',
+            success: function success(data) {
+                headers.Cookie = data;
+                resolve(true);
+            },
+            fail: function fail(data, code) {
+                resolve(false);
+            }
+        });
+    });
+}
+
+function realFetch(url) {
+    var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    var method = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'get';
+
+    console.log('┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.log('┃ url: ', API_ROOT + url);
+    console.log('┃ method: ', method);
+    console.log('┃ data: ', JSON.stringify(data));
+    console.log('┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+
+    return new Promise(function (resolve, reject) {
+        fetch.fetch({
+            url: API_ROOT + url,
+            data: data,
+            header: headers,
+            method: method,
+            success: function success(data) {
+                resolve(data);
+            },
+            fail: function fail(data, code) {
+                reject(data);
+            }
+        });
+    });
+}
+
+function withAuth(url) {
+    var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    var method = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'get';
+    var canSkip = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+
+    return getAuth().then(function (auth) {
+        if (auth || canSkip) {
+            return realFetch(url, data, method);
+        } else {
+            return new Promise(function (resolve, reject) {
+                reject('请先登录！');
+            });
+        }
+    });
+}
+
+function post(url) {
+    var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    var config = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+    if (config.withAuth) {
+        return withAuth(url, data, 'post', config.canSkip);
+    } else {
+        return realFetch(url, data, 'post');
+    }
+}
+
+function get(url) {
+    var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    var config = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+    if (config.withAuth) {
+        return withAuth(url, data, 'get', config.canSkip);
+    } else {
+        return realFetch(url, data, 'get');
+    }
+}
+
+exports.default = {
+
+    //登录    
+    login: function login(params) {
+        return get('api/user/login.do', params);
+    },
+
+
+    // 注册获取验证码
+    getCode: function getCode(params) {
+        return get('api/user/sendRegisterSMS.do', params);
+    },
+
+
+    // 注册
+    register: function register(params) {
+        return get('api/user/register.do', params);
+    },
+
+
+    // 找回密码验证码
+    backCode: function backCode(params) {
+        return get('api/user/sendFindBackSMS.do', params);
+    },
+
+
+    // 忘记密码 
+    forget: function forget(params) {
+        return get('api/user/findPassword.do', params);
+    },
+
+
+    // 线下兼职筛选接口
+    getJobList: function getJobList(params) {
+        return get('api/job/offline/getList.do', params);
+    },
+
+
+    // 线下兼职详情
+    getJobDetails: function getJobDetails(params) {
+        return get('api/job/offline/getSingle.do', params);
+    },
+
+
+    //  查询用户是否投递过简历接口
+    getisdeliver: function getisdeliver(params) {
+        return get('api/job/offline/getisdeliver.do', params);
+    },
+
+
+    // 线下兼职详情 --进行投递接口
+    deliver: function deliver(params) {
+        return get('api/job/offline/deliverResume.do', params);
+    },
+
+
+    // 线下兼职企业信息
+    getEnterprise: function getEnterprise(params) {
+        return get('api/enterprise/getEnterprise.do', params);
+    },
+
+
+    // 搜索页面-> 猜你想要
+    gethotWords: function gethotWords(params) {
+        return get('api/job/offline/getHotWord.do', params);
+    },
+
+
+    // 城市页面-> 热门城市
+    gethotCitys: function gethotCitys(params) {
+        return get('api/city/getHotCity.do', params);
+    },
+
+
+    // 城市页面-> 所有城市
+    getCitys: function getCitys(params) {
+        return get('api/city/getCitysForGPS.do', params);
+    },
+
+
+    //   首页获取 定位城市名字   
+    getCityName: function getCityName(params) {
+        return post('god/map/getCityName.do', params);
+    },
+
+
+    // 我的页面 用户个人简历展示
+    showUserResume: function showUserResume(params) {
+        return get('api/user/showUserResume.do', params);
+    },
+
+
+    // 我的页面 -实时数据展示
+    getData: function getData(params) {
+        return get('api/user/getData.do', params);
+    },
+
+
+    // 我的投递 -全部
+    getJobOfflineList: function getJobOfflineList(params) {
+        return get('api/jobRequest/getJobOfflineList.do', params);
+    },
+
+
+    //我的投递 -待录用
+    getDaiLuYongList: function getDaiLuYongList(params) {
+        return get('api/jobRequest/getDaiLuYongList.do', params);
+    },
+
+
+    // 我的投递 - 取消投递
+    deldeliverResume: function deldeliverResume(params) {
+        return post('api/job/offline/deldeliverResume.do', params);
+    },
+
+
+    // 我的投递 ——待上岗
+    getDaiShangGangList: function getDaiShangGangList(params) {
+        return get('api/jobRequest/getDaiShangGangList.do', params);
+    },
+
+
+    // .我的-我的投递-待结算
+    getDaiJieSuanList: function getDaiJieSuanList(params) {
+        return get('api/jobRequest/getDaiJieSuanList.do', params);
+    },
+
+
+    // 我的-我的投递-已结算
+    getYiJieSuanList: function getYiJieSuanList(params) {
+        return get('api/jobRequest/getYiJieSuanList.do', params);
+    },
+
+
+    // 投递信息-投递详情
+    getShangGangJiLu: function getShangGangJiLu(params) {
+        return get('api/jobRequest/getShangGangJiLu.do', params);
+    },
+
+
+    // 编辑简历 -- 获取阿里上传token接口
+    osstoken: function osstoken(params) {
+        return get('ali/osstoken.do', params);
+    },
+
+
+    // 编辑简历 -- 获取职位值类型兼职列表接口
+    getmainJobType: function getmainJobType(params) {
+        return get('api/job/offline/mainJobType.do', params);
+    },
+
+
+    //编辑简历 -- 获取省级城市
+    getProvince: function getProvince(params) {
+        return get('api/city/getProvince.do', params);
+    },
+
+
+    // 编辑简历 --获取市级城市接口
+    getChildrenCity: function getChildrenCity(params) {
+        return get('api/city/getChildrenCity.do', params);
+    },
+
+
+    // 编辑简历 -- 获取区域城市接口
+    getArea: function getArea(params) {
+        return get('api/city/getArea.do', params);
+    },
+
+
+    // 编辑简历 -- app修改用户简历接口 
+    editUserInfo: function editUserInfo(params) {
+        return post('api/user/editUserInfo.do', params);
+    },
+
+
+    // 上传生活照后修改简历完善度(备:在上传生活照code值为0时调用)
+    updateDegree: function updateDegree(params) {
+        return post('api/user/updateDegree.do', params);
+    },
+
+
+    /**
+     * 获取收藏文章列表
+     */
+    getCollectArticle: function getCollectArticle(page) {
+        return get('lg/collect/list/' + page + '/json', null, {
+            withAuth: true
+        });
+    },
+
+    /**
+     * 收藏站内文章
+     */
+    collectArticle: function collectArticle(id) {
+        return post('lg/collect/' + id + '/json', null, {
+            withAuth: true
+        });
+    },
+
+    /**
+     * 收藏站外文章
+     */
+    collectArticleAdd: function collectArticleAdd(params) {
+        return post('lg/collect/add/json', params, {
+            withAuth: true
+        });
+    },
+
+    /**
+     * 从文章列表取消收藏
+     */
+    uncollectArticle: function uncollectArticle(id) {
+        return post('lg/uncollect_originId/' + id + '/json', null, {
+            withAuth: true
+        });
+    },
+
+    /**
+     * 从收藏列表取消收藏
+     */
+    uncollect: function uncollect(id, originId) {
+        return post('lg/uncollect/' + id + '/json', {
+            originId: originId
+        }, {
+            withAuth: true
+        });
+    },
+
+    /**
+     * 获取收藏网站列表
+     */
+    getCollectWeb: function getCollectWeb() {
+        return get('lg/collect/usertools/json', null, {
+            withAuth: true
+        });
+    },
+
+    /**
+     * 收藏网站
+     */
+    collectWeb: function collectWeb(params) {
+        return post('lg/collect/addtool/json', params, {
+            withAuth: true
+        });
+    },
+
+    /**
+     * 编辑收藏的网址
+     */
+    editCollectWeb: function editCollectWeb(params) {
+        return post('lg/collect/updatetool/json', params, {
+            withAuth: true
+        });
+    },
+
+    /**
+     * 删除收藏的网址
+     */
+    deleteCollectWeb: function deleteCollectWeb(id) {
+        return post('lg/collect/deletetool/json', {
+            id: id
+        }, {
+            withAuth: true
+        });
+    }
+};
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.login = login;
+exports.register = register;
+exports.forget = forget;
+exports.getCode = getCode;
+exports.backCode = backCode;
+
+var _api = __webpack_require__(0);
+
+var _api2 = _interopRequireDefault(_api);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var storage = $app_require$('@app-module/system.storage');
+
+function login(phoneNumber, password) {
+    return _api2.default.login({
+        phoneNumber: phoneNumber,
+        password: password
+    }).then(function (response) {
+        var value = JSON.parse(response.data);
+
+        if (value.errorCode === -1) {
+            Promise.reject(value.errorMsg);
+        }
+        storage.set({
+            key: 'auth',
+            Data: response.headers['Set-Cookie'],
+            success: function success(data) {
+                console.log('cookies保存成功');
+            }
+        });
+        storage.set({
+            key: 'user',
+            value: value
+        });
+        storage.set({
+            key: 'isLogin',
+            value: true
+        });
+        return Promise.resolve(value);
+    }).catch(function (err) {
+        return Promise.reject('登录失败');
+    });
+}
+
+function register(phoneNumber, validateCode, password) {
+    return _api2.default.register({
+        phoneNumber: phoneNumber,
+        validateCode: validateCode,
+        password: password
+    }).then(function (response) {
+        var value = JSON.parse(response.data);
+        if (value.errorCode === -1) {
+            Promise.reject(value.errorMsg);
+        }
+
+        return Promise.resolve(value);
+    }).catch(function (err) {
+        return Promise.reject('注册失败');
+    });
+}
+
+function forget(phoneNumber, validateCode, password) {
+    return _api2.default.forget({
+        phoneNumber: phoneNumber,
+        validateCode: validateCode,
+        password: password
+    }).then(function (response) {
+        var value = JSON.parse(response.data);
+        if (value.errorCode === -1) {
+            Promise.reject(value.errorMsg);
+        }
+
+        return Promise.resolve(value);
+    }).catch(function (err) {
+        return Promise.reject('注册失败');
+    });
+}
+
+function getCode(phoneNumber) {
+    return _api2.default.getCode({
+        phoneNumber: phoneNumber
+    }).then(function (response) {
+        var value = JSON.parse(response.data);
+
+        if (value.errorCode === -1) {
+            Promise.reject(value.errorMsg);
+        }
+        return Promise.resolve(value);
+    }).catch(function (err) {
+        return Promise.reject('获取失败');
+    });
+}
+
+function backCode(phoneNumber) {
+    return _api2.default.backCode({
+        phoneNumber: phoneNumber
+    }).then(function (response) {
+        var value = JSON.parse(response.data);
+
+        if (value.errorCode === -1) {
+            Promise.reject(value.errorMsg);
+        }
+        return Promise.resolve(value);
+    }).catch(function (err) {
+        return Promise.reject('获取失败');
+    });
+}
+
+/***/ }),
+
+/***/ 58:
+/***/ (function(module, exports, __webpack_require__) {
+
+var $app_template$ = __webpack_require__(59)
+var $app_style$ = __webpack_require__(60)
+var $app_script$ = __webpack_require__(61)
+
+$app_define$('@app-component/index', [], function($app_require$, $app_exports$, $app_module$){
+     $app_script$($app_module$, $app_exports$, $app_require$)
+     if ($app_exports$.__esModule && $app_exports$.default) {
+            $app_module$.exports = $app_exports$.default
+        }
+     $app_module$.exports.template = $app_template$
+     $app_module$.exports.style = $app_style$
+})
+
+$app_bootstrap$('@app-component/index',{ packagerVersion: '0.0.5'})
+
+
+/***/ }),
+
+/***/ 59:
+/***/ (function(module, exports) {
+
+module.exports = {
+  "type": "div",
+  "attr": {},
+  "classList": [
+    "page"
+  ],
+  "children": [
+    {
+      "type": "div",
+      "attr": {},
+      "classList": [
+        "flex_page"
+      ],
+      "children": [
+        {
+          "type": "div",
+          "attr": {},
+          "classList": [
+            "forget_box"
+          ],
+          "children": [
+            {
+              "type": "div",
+              "attr": {},
+              "classList": [
+                "phone_box"
+              ],
+              "children": [
+                {
+                  "type": "input",
+                  "attr": {
+                    "type": "number",
+                    "value": function () {return this.phoneNumber},
+                    "placeholder": "请输入11位手机号码"
+                  },
+                  "classList": [
+                    "phone_nub"
+                  ],
+                  "events": {
+                    "change": "onInputPhone"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "div",
+              "attr": {},
+              "classList": [
+                "code_box"
+              ],
+              "children": [
+                {
+                  "type": "input",
+                  "attr": {
+                    "type": "number",
+                    "value": function () {return this.validateCode},
+                    "placeholder": "请输入验证码"
+                  },
+                  "classList": [
+                    "code_nub"
+                  ],
+                  "events": {
+                    "change": "onInputCode"
+                  }
+                },
+                {
+                  "type": "text",
+                  "attr": {
+                    "disabled": function () {return this.disabled},
+                    "value": function () {return this.codebtn}
+                  },
+                  "classList": [
+                    "code_btn"
+                  ],
+                  "events": {
+                    "click": "backCode"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "div",
+              "attr": {},
+              "classList": [
+                "password_box"
+              ],
+              "children": [
+                {
+                  "type": "input",
+                  "attr": {
+                    "type": "password",
+                    "value": function () {return this.password},
+                    "placeholder": "请输入密码 (6-16位数字字母组合)"
+                  },
+                  "classList": [
+                    "password_nub"
+                  ],
+                  "events": {
+                    "change": "onInputPassword"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "div",
+              "attr": {},
+              "classList": [
+                "forget_btn"
+              ],
+              "events": {
+                "click": "forget"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "attr": {
+                    "value": "重置密码"
+                  },
+                  "classList": [
+                    "forget_btn_text"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+/***/ }),
+
+/***/ 60:
+/***/ (function(module, exports) {
+
+module.exports = {
+  ".page .flex_page": {
+    "width": "100%",
+    "display": "flex",
+    "flexDirection": "column",
+    "_meta": {
+      "ruleDef": [
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "page"
+        },
+        {
+          "t": "d"
+        },
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "flex_page"
+        }
+      ]
+    }
+  },
+  ".forget_box": {
+    "width": "100%",
+    "paddingTop": "0px",
+    "paddingRight": "58px",
+    "paddingBottom": "0px",
+    "paddingLeft": "58px",
+    "display": "flex",
+    "flexDirection": "column"
+  },
+  ".forget_box .phone_box": {
+    "height": "120px",
+    "width": "100%",
+    "borderBottomColor": "#eeeeee",
+    "borderBottomWidth": "1px",
+    "_meta": {
+      "ruleDef": [
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "forget_box"
+        },
+        {
+          "t": "d"
+        },
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "phone_box"
+        }
+      ]
+    }
+  },
+  ".forget_box .phone_box .phone_nub": {
+    "width": "100%",
+    "fontSize": "28px",
+    "_meta": {
+      "ruleDef": [
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "forget_box"
+        },
+        {
+          "t": "d"
+        },
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "phone_box"
+        },
+        {
+          "t": "d"
+        },
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "phone_nub"
+        }
+      ]
+    }
+  },
+  ".forget_box .code_box": {
+    "height": "120px",
+    "width": "100%",
+    "borderBottomColor": "#eeeeee",
+    "borderBottomWidth": "1px",
+    "display": "flex",
+    "justifyContent": "space-between",
+    "alignItems": "center",
+    "_meta": {
+      "ruleDef": [
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "forget_box"
+        },
+        {
+          "t": "d"
+        },
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "code_box"
+        }
+      ]
+    }
+  },
+  ".forget_box .code_box .code_nub": {
+    "width": "460px",
+    "fontSize": "28px",
+    "_meta": {
+      "ruleDef": [
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "forget_box"
+        },
+        {
+          "t": "d"
+        },
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "code_box"
+        },
+        {
+          "t": "d"
+        },
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "code_nub"
+        }
+      ]
+    }
+  },
+  ".forget_box .code_box .code_btn": {
+    "width": "154px",
+    "fontSize": "28px",
+    "color": "#cccccc",
+    "_meta": {
+      "ruleDef": [
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "forget_box"
+        },
+        {
+          "t": "d"
+        },
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "code_box"
+        },
+        {
+          "t": "d"
+        },
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "code_btn"
+        }
+      ]
+    }
+  },
+  ".forget_box .password_box": {
+    "height": "120px",
+    "width": "100%",
+    "borderBottomColor": "#eeeeee",
+    "borderBottomWidth": "1px",
+    "_meta": {
+      "ruleDef": [
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "forget_box"
+        },
+        {
+          "t": "d"
+        },
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "password_box"
+        }
+      ]
+    }
+  },
+  ".forget_box .password_box .password_nub": {
+    "width": "100%",
+    "fontSize": "28px",
+    "_meta": {
+      "ruleDef": [
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "forget_box"
+        },
+        {
+          "t": "d"
+        },
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "password_box"
+        },
+        {
+          "t": "d"
+        },
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "password_nub"
+        }
+      ]
+    }
+  },
+  ".forget_box .forget_btn": {
+    "marginTop": "64px",
+    "width": "100%",
+    "height": "100px",
+    "backgroundColor": "#37d3cb",
+    "borderRadius": "10px",
+    "display": "flex",
+    "justifyContent": "center",
+    "alignItems": "center",
+    "_meta": {
+      "ruleDef": [
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "forget_box"
+        },
+        {
+          "t": "d"
+        },
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "forget_btn"
+        }
+      ]
+    }
+  },
+  ".forget_box .forget_btn .forget_btn_text": {
+    "fontSize": "28px",
+    "color": "#fefefe",
+    "_meta": {
+      "ruleDef": [
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "forget_box"
+        },
+        {
+          "t": "d"
+        },
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "forget_btn"
+        },
+        {
+          "t": "d"
+        },
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "forget_btn_text"
+        }
+      ]
+    }
+  }
+}
+
+/***/ }),
+
+/***/ 61:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = function(module, exports, $app_require$){'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _system = $app_require$('@app-module/system.router');
+
+var _system2 = _interopRequireDefault(_system);
+
+var _user = __webpack_require__(2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    data: {
+        codebtn: '获取验证码',
+        currentTime: 61,
+        disabled: false,
+        phoneNumber: '',
+        validateCode: '',
+        password: ''
+    },
+    onInputPhone: function onInputPhone(_ref) {
+        var value = _ref.value;
+
+        this.phoneNumber = value;
+    },
+    onInputCode: function onInputCode(_ref2) {
+        var value = _ref2.value;
+
+        this.validateCode = value;
+    },
+    onInputPassword: function onInputPassword(_ref3) {
+        var value = _ref3.value;
+
+        this.password = value;
+    },
+    backCode: function backCode() {
+        var _this = this;
+
+        var RegExphone = /^[1][3,4,5,7,8,9][0-9]{9}$/;
+        if (!RegExphone.test(this.phoneNumber)) {
+            this.$app.$def.prompt.showToast({
+                message: '请输入手机号码'
+            });
+        } else {
+            (0, _user.backCode)(this.phoneNumber).then(function (data) {
+                if (data.code !== 0) {
+                    _this.$app.$def.prompt.showToast({
+                        message: data.msg
+                    });
+                } else {
+                    var that = _this;
+                    var interval = setInterval(function () {
+                        that.currentTime--;
+                        that.codebtn = that.currentTime + '秒';
+                        if (that.currentTime <= 0) {
+                            clearInterval(interval);
+                            that.codebtn = "重新发送";
+                            that.currentTime = '61';
+                            that.disabled = "false";
+                        }
+                    }, 1000);
+                }
+            }).catch(function (err) {
+                _this.$app.$def.prompt.showToast({
+                    message: "请检查您的网络"
+                });
+            });
+        }
+    },
+    forget: function forget() {
+        var _this2 = this;
+
+        var RegExphone = /^[1][3,4,5,7,8,9][0-9]{9}$/;
+        var RegExpCode = /^\d{6}$/;
+        var RegExpPassword = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
+        if (!RegExphone.test(this.phoneNumber)) {
+            this.$app.$def.prompt.showToast({
+                message: '请输入手机号码'
+            });
+        } else if (!RegExpCode.test(this.validateCode)) {
+            this.$app.$def.prompt.showToast({
+                message: '请输入验证码'
+            });
+        } else if (!RegExpPassword.test(this.password)) {
+            this.$app.$def.prompt.showToast({
+                message: '请提高密码安全性'
+            });
+        } else {
+            (0, _user.forget)(this.phoneNumber, this.validateCode, this.password).then(function (data) {
+                if (data.code !== 0) {
+                    _this2.$app.$def.prompt.showToast({
+                        message: data.msg
+                    });
+                } else {
+                    _system2.default.back();
+                }
+            }).catch(function (err) {
+                _this2.$app.$def.prompt.showToast({
+                    message: "请检查您的网络"
+                });
+            });
+        }
+    }
+};
+
+
+var moduleOwn = exports.default || module.exports;
+var accessors = ['public', 'protected', 'private'];
+
+if (moduleOwn.data && accessors.some(function (acc) {
+    return moduleOwn[acc];
+})) {
+    throw new Error('页面VM对象中的属性data不可与"' + accessors.join(',') + '"同时存在，请使用private替换data名称');
+} else if (!moduleOwn.data) {
+    moduleOwn.data = {};
+    moduleOwn._descriptor = {};
+    accessors.forEach(function (acc) {
+        var accType = _typeof(moduleOwn[acc]);
+        if (accType === 'object') {
+            moduleOwn.data = Object.assign(moduleOwn.data, moduleOwn[acc]);
+            for (var name in moduleOwn[acc]) {
+                moduleOwn._descriptor[name] = { access: acc };
+            }
+        } else if (accType === 'function') {
+            console.warn('页面VM对象中的属性' + acc + '的值不能是函数，请使用对象');
+        }
+    });
+}}
+
+/***/ })
+
+/******/ });
   };
   if (typeof window === "undefined") {
     return createPageHandler();
@@ -10,3 +1205,4 @@
     window.createPageHandler = createPageHandler
   }
 })();
+//# sourceMappingURL=index.js.map

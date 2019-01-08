@@ -18,7 +18,7 @@
                     <div class="item name">
                         <text class="xinghao">*</text>
                         <text class="item_text"> 姓名</text>
-                        <input class="item_input" type="text" placeholder="请输入姓名" value="{{realName}}" onchange="realNamechange"></input>
+                        <input class="item_input" placeholder="请输入姓名" value="{{realName}}" onchange="realNamechange"></input>
                     </div>
                     <div class="line"></div>
                     <div class="item gender">
@@ -56,13 +56,13 @@
                     <div class="item">
                         <text class="xinghao">*</text>
                         <text class="item_text"> 毕业学校</text>
-                        <input class="item_input" type="text" placeholder="请输入学校" value="{{school}}" onchange="schoolchange"></input>
+                        <input class="item_input" placeholder="请输入学校" value="{{school}}" onchange="schoolchange"></input>
                     </div>
                     <div class="line"></div>
                     <div class="item">
                         <text class="xinghao">*</text>
                         <text class="item_text"> 入学年份</text>
-                        <picker class="picker " type="date" start="1950" end="2020" value="{{startschooltime}}" selected="yyyy" onchange="startschool"
+                        <picker class="picker" type="date" start="1950-1-1" end="2020-1-1" value="{{startschooltime}}" selected="yyyy" onchange="startschool"
                         />
                     </div>
                     <div class="line"></div>
@@ -75,26 +75,26 @@
                     <div class="item">
                         <text class="xinghao">*</text>
                         <text class="item_text"> 专业</text>
-                        <input class="item_input" type="text" placeholder="请输入专业" value="{{profession}}" onchange="professionchange"></input>
+                        <input class="item_input" placeholder="请输入专业" value="{{profession}}" onchange="professionchange"></input>
                     </div>
                 </div>
                 <div class="location module">
                     <div class="item location_box">
                         <div class="location_box_item">
                             <text class="xinghao">*</text>
-                            <picker class="picker_location" type="text" range="{{newprovincelist}}" selected="" value="{{province}}" onchange="provinceonchange"
+                            <picker class="picker_location" type="text" range="{{newprovincelist}}" value="{{province}}" onchange="provinceonchange"
                             />
                             <image class="down_img" src="img/down_icon.png"></image>
                         </div>
                         <div class="location_box_item">
                             <text class="xinghao">*</text>
-                            <picker class="picker_location " type="text" range="{{newchildrencitylist}}" selected="" value="{{childrencity}}" onchange="childschange"
+                            <picker class="picker_location " type="text" range="{{newchildrencitylist}}" value="{{childrencity}}" onchange="childschange"
                             />
                             <image class="down_img" src="img/down_icon.png"></image>
                         </div>
                         <div class="location_box_item">
                             <text class="xinghao">*</text>
-                            <picker class="picker_location " type="text" range="{{newarealist}}" selected="" value="{{area}}" onchange="areachange" />
+                            <picker class="picker_location " type="text" range="{{newarealist}}" value="{{area}}" onchange="areachange" />
                             <image class="down_img" src="img/down_icon.png"></image>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                     <div class="item">
                         <text class="xinghao hidden">*</text>
                         <text class="item_text"> 邮箱</text>
-                        <input class="item_input" type="text" placeholder="请输入邮箱" value="{{email}}" onchange="emailchange"></input>
+                        <input class="item_input" placeholder="请输入邮箱" value="{{email}}" onchange="emailchange"></input>
                     </div>
                     <div class="line"></div>
                     <div class="item">
@@ -132,7 +132,7 @@
                 <div class="experience module">
                     <text class="experience_title">工作经验</text>
                     <textarea class="experience_text" maxlength="200" placeholder="请输入工作经历，200字以内" onchange="experiencechange">
-                            {{experience}}
+                        {{experience}}
                     </textarea>
                 </div>
                 <div class="agreement">
@@ -153,7 +153,7 @@
 <script>
     import {
         osstoken,
-        uploadingheadimg,
+        // uploadingheadimg,
         getProvince,
         getChildrenCity,
         getArea,
@@ -262,7 +262,6 @@
             console.log(that.headerFile)
             this.$app.$def.request.upload({
                 url: 'http://localtestapi.ejzhi.com/oss/uploadFile.do',
-
                 files: [
                     {
                         uri: that.headerFile
@@ -322,6 +321,7 @@
         },
 
         provinceonchange(e) {
+            console.log(e)
             this.province = e.newValue;
             this.provinceId = this.oldprovincelist[e.newSelected].id;
             this.getChildrenCity();
@@ -461,7 +461,7 @@
                         that.experience = resumedata.experience;
                         that.jobTypeId = resumedata.jobtypeids;
                     } else {
-
+                        return
                     }
 
                 },
@@ -482,59 +482,59 @@
             })
             let jobTypeId = jobtypeIds.join()
             this.jobTypeId = jobTypeId;
-            if (this.headImageName == '') {
+            if (this.headImageName === '') {
                 this.$app.$def.prompt.showToast({
                     message: "请选择头像"
                 })
-            } else if (this.realName == '') {
+            } else if (this.realName === '') {
                 this.$app.$def.prompt.showToast({
                     message: "请填写姓名"
                 })
-            } else if (this.gender == '') {
+            } else if (this.gender === '') {
                 this.$app.$def.prompt.showToast({
                     message: "请选择性别"
                 })
-            } else if (this.birthdaytime == '') {
+            } else if (this.birthdaytime === '') {
                 this.$app.$def.prompt.showToast({
                     message: "请填写生日"
                 })
-            } else if (this.educationcondition == '') {
+            } else if (this.educationcondition === '') {
                 this.$app.$def.prompt.showToast({
                     message: "请选择教育情况"
                 })
-            } else if (this.school == '') {
+            } else if (this.school === '') {
                 this.$app.$def.prompt.showToast({
                     message: "请填写学校"
                 })
-            } else if (this.startschooltime == '') {
+            } else if (this.startschooltime === '') {
                 this.$app.$def.prompt.showToast({
                     message: "请选择入学时间"
                 })
-            } else if (this.education == '') {
+            } else if (this.education === '') {
                 this.$app.$def.prompt.showToast({
                     message: "请选择学历"
                 })
-            } else if (this.profession == '') {
+            } else if (this.profession === '') {
                 this.$app.$def.prompt.showToast({
                     message: "请填写专业"
                 })
-            } else if (this.province == '请选择') {
+            } else if (this.province === '请选择') {
                 this.$app.$def.prompt.showToast({
                     message: "请选择省级城市"
                 })
-            } else if (this.city == '请选择') {
+            } else if (this.city === '请选择') {
                 this.$app.$def.prompt.showToast({
                     message: "请选择市级城市"
                 })
-            } else if (this.area == '请选择') {
+            } else if (this.area === '请选择') {
                 this.$app.$def.prompt.showToast({
                     message: "请选择县级城市"
                 })
-            } else if (this.mobile == '') {
+            } else if (this.mobile === '') {
                 this.$app.$def.prompt.showToast({
                     message: "请填写电话号码"
                 })
-            } else if (this.jobTypeId == '') {
+            } else if (this.jobTypeId === '') {
                 this.$app.$def.prompt.showToast({
                     message: "请选择期望职位"
                 })
@@ -547,11 +547,11 @@
                 token: this.token,
                 headImageName: this.headerFile,
                 realName: this.realName,
-                gender: this.gender == "男" ? "1" : "0",
+                gender: this.gender === "男" ? "1" : "0",
                 birthday: this.birthdaytime,
                 height: this.height,
                 weight: this.weight,
-                eduSituation: this.educationcondition == "在校生" ? "0" : "1",
+                eduSituation: this.educationcondition === "在校生" ? "0" : "1",
                 school: this.school,
                 startSchool: this.startschooltime,
                 degree: this.education,

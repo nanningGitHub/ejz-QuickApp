@@ -1,11 +1,12 @@
 <template>
     <div class="page">
         <div class="flex_page">
-            <tabs>
+            <!-- 全部 -->
+            <tabs if="{{0 == this.index}}">
                 <tab-bar class="tab_bar">
                     <text class="tab_bar_text {{$item.textcolor?'tab_bar_text_active':''}}" for="{{tabsbarlist}}" onclick="clickTab($idx)">{{$item.text}}</text>
                 </tab-bar>
-                <tab-content class="tab_content" if="{{0 == this.index}}">
+                <tab-content class="tab_content">
                     <list class="content all" onscrollbottom="loadMoreData">
                         <block for="{{jobOfflinePage}}">
                             <list-item type="product" class="item_all" onclick="intoApplyDetails($item.jobId)">
@@ -35,7 +36,7 @@
                                 </div>
                             </list-item>
                         </block>
-                        <!-- 加载更多，type属性自定义命名为loadMore -->
+
                         <list-item type="loadMore" class="load-more">
                             <progress show="{{hasMoreData}}" type="circular"></progress>
                             <text show="{{hasMoreData}}">加载更多</text>
@@ -43,8 +44,15 @@
                         </list-item>
                     </list>
                 </tab-content>
-                <tab-content class="tab_content" elif="{{1 == this.index}}">
-                    <!-- 待录用 -->
+            </tabs>
+            <!-- 待录用 -->
+            <tabs elif="{{1 == this.index}}">
+                <tab-bar class="tab_bar">
+                    <text class="tab_bar_text {{$item.textcolor?'tab_bar_text_active':''}}" for="{{tabsbarlist}}" onclick="clickTab($idx)">{{$item.text}}</text>
+                </tab-bar>
+
+                <tab-content class="tab_content">
+
                     <list class="content all" onscrollbottom="loadMoreData">
                         <block for="{{daiLuYongList}}">
                             <list-item type="product" class="item_hire">
@@ -80,7 +88,7 @@
                                 </div>
                             </list-item>
                         </block>
-                        <!-- 加载更多，type属性自定义命名为loadMore -->
+
                         <list-item type="loadMore" class="load-more">
                             <progress show="{{hasMoreData}}" type="circular"></progress>
                             <text show="{{hasMoreData}}">加载更多</text>
@@ -88,8 +96,13 @@
                         </list-item>
                     </list>
                 </tab-content>
-                <tab-content class="tab_content" elif="{{2 == this.index}}">
-                    <!-- 待上岗 -->
+            </tabs>
+            <!-- 待上岗 -->
+            <tabs elif="{{2 == this.index}}">
+                <tab-bar class="tab_bar">
+                    <text class="tab_bar_text {{$item.textcolor?'tab_bar_text_active':''}}" for="{{tabsbarlist}}" onclick="clickTab($idx)">{{$item.text}}</text>
+                </tab-bar>
+                <tab-content class="tab_content">
                     <list class="content all" onscrollbottom="loadMoreData">
                         <block for="{{daiShangGangList}}">
                             <list-item type="product" class="item_hire">
@@ -124,7 +137,6 @@
                                 </div>
                             </list-item>
                         </block>
-                        <!-- 加载更多，type属性自定义命名为loadMore -->
                         <list-item type="loadMore" class="load-more">
                             <progress show="{{hasMoreData}}" type="circular"></progress>
                             <text show="{{hasMoreData}}">加载更多</text>
@@ -132,8 +144,14 @@
                         </list-item>
                     </list>
                 </tab-content>
-                <tab-content class="tab_content" elif="{{3 == this.index}}">
-                    <!-- 待结算 -->
+            </tabs>
+            <!-- 待结算 -->
+            <tabs elif="{{3 == this.index}}">
+                <tab-bar class="tab_bar">
+                    <text class="tab_bar_text {{$item.textcolor?'tab_bar_text_active':''}}" for="{{tabsbarlist}}" onclick="clickTab($idx)">{{$item.text}}</text>
+                </tab-bar>
+                <tab-content class="tab_content">
+
                     <list class="content all" onscrollbottom="loadMoreData">
                         <block for="{{daiJieSuanList}}">
                             <list-item type="product" class="item_hire">
@@ -168,7 +186,7 @@
                                 </div>
                             </list-item>
                         </block>
-                        <!-- 加载更多，type属性自定义命名为loadMore -->
+
                         <list-item type="loadMore" class="load-more">
                             <progress show="{{hasMoreData}}" type="circular"></progress>
                             <text show="{{hasMoreData}}">加载更多</text>
@@ -176,8 +194,13 @@
                         </list-item>
                     </list>
                 </tab-content>
-                <tab-content class="tab_content" elif="{{4 == this.index}}">
-                    <!-- 已结算 -->
+            </tabs>
+            <!-- 已结算 -->
+            <tabs elif="{{4 == this.index}}">
+                <tab-bar class="tab_bar">
+                    <text class="tab_bar_text {{$item.textcolor?'tab_bar_text_active':''}}" for="{{tabsbarlist}}" onclick="clickTab($idx)">{{$item.text}}</text>
+                </tab-bar>
+                <tab-content class="tab_content">
                     <list class="content all" onscrollbottom="loadMoreData">
                         <block for="{{yiJieSuanList}}">
                             <list-item type="product" class="item_hire">
@@ -212,7 +235,7 @@
                                 </div>
                             </list-item>
                         </block>
-                        <!-- 加载更多，type属性自定义命名为loadMore -->
+
                         <list-item type="loadMore" class="load-more">
                             <progress show="{{hasMoreData}}" type="circular"></progress>
                             <text show="{{hasMoreData}}">加载更多</text>
@@ -221,6 +244,7 @@
                     </list>
                 </tab-content>
             </tabs>
+
         </div>
     </div>
 </template>
@@ -294,6 +318,9 @@
             })
             this.tabsbarlist[this.index].textcolor = true;
         },
+        onShow: function () {
+            this.getlist(this.index)
+        },
         clickTab(index) {  //点击tab
             this.tabsbarlist.map(item => {
                 item.textcolor = false
@@ -337,7 +364,7 @@
         getJobOfflineList() {    //我的投递--全部
             getJobOfflineList(this.token, this.page)
                 .then((data) => {
-                    if (data.dataMap.jobOfflinePage != undefined) {
+                    if (data.dataMap.jobOfflinePage !== undefined) {
                         let BeforeJobOfflinePage = this.jobOfflinePage;
                         let jobOfflinePage = data.dataMap.jobOfflinePage;
                         jobOfflinePage.map(item => {
@@ -366,7 +393,7 @@
         getDaiLuYongList() {   //我的投递--待录用
             getDaiLuYongList(this.token, this.page)
                 .then((data) => {
-                    if (data.dataMap.jobOfflinePage != undefined) {
+                    if (data.dataMap.jobOfflinePage !== undefined) {
 
                         let BeforeJobOfflinePage = this.daiLuYongList;
                         let jobOfflinePage = data.dataMap.jobOfflinePage;
@@ -443,7 +470,7 @@
         getDaiShangGangList() {   //我的投递 -- 待上岗
             getDaiShangGangList(this.token, this.page)
                 .then((data) => {
-                    if (data.dataMap.jobOfflinePage != undefined) {
+                    if (data.dataMap.jobOfflinePage !== undefined) {
 
                         let BeforeJobOfflinePage = this.daiShangGangList;
                         let jobOfflinePage = data.dataMap.jobOfflinePage;
@@ -472,7 +499,7 @@
         getDaiJieSuanList() {   //我的投递 -- 待结算
             getDaiJieSuanList(this.token, this.page)
                 .then((data) => {
-                    if (data.dataMap.jobOfflinePage != undefined) {
+                    if (data.dataMap.jobOfflinePage !== undefined) {
 
                         let BeforeJobOfflinePage = this.daiJieSuanList;
                         let jobOfflinePage = data.dataMap.jobOfflinePage;
@@ -501,7 +528,7 @@
         getYiJieSuanList() {   //我的投递 -- 已结算
             getYiJieSuanList(this.token, this.page)
                 .then((data) => {
-                    if (data.dataMap.jobOfflinePage != undefined) {
+                    if (data.dataMap.jobOfflinePage !== undefined) {
                         let BeforeJobOfflinePage = this.yiJieSuanList;
                         let jobOfflinePage = data.dataMap.jobOfflinePage;
                         jobOfflinePage.map(item => {

@@ -1,30 +1,3 @@
-// 上传文件未用
-function ossuploading() {
-  const request = require('@system.request')
-  request.upload({
-    url: 'http://www.example.com',
-    files: [
-      {
-        uri: 'internal://xxx/xxx/test',
-        name: 'file1',
-        filename: 'test.png'
-      }
-    ],
-    data: [
-      {
-        name: 'param1',
-        value: 'value1'
-      }
-    ],
-    success: function (data) {
-      console.log('handling success')
-    },
-    fail: function (data, code) {
-      console.log(`handling fail, code = ${code}`)
-    }
-  })
-}
-
 
 // 时间戳转换开始
 function formatNumber(n) {
@@ -200,5 +173,5 @@ export default {
   showMenu,
   createShortcut,
   intoEditResume,
-  formatTime
+  formatTime,
 }

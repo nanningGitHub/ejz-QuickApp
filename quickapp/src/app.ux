@@ -25,5 +25,6 @@
     intoEditResume: util.intoEditResume,
     createShortcut: util.createShortcut,
     formatTime: util.formatTime,
+    refresh: true
   }
 </script>

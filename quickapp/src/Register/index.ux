@@ -17,9 +17,10 @@
                     <text class="register_btn_text">注册</text>
                 </div>
             </div>
-            <text class="protocol">注册登录即代表同意
+            <div>
+                <text class="protocol">注册登录即代表同意</text>
                 <a href="/Protocol" class="Into_protocol">《用户协议》</a>
-            </text>
+            </div>
         </div>
     </div>
 </template>

@@ -111,6 +111,7 @@
       this.$app.$def.showMenu()
     },
     onShow() {
+      this.$app.$def.refresh = true;
       var that = this;
       this.$app.$def.storage.get({
         key: 'user',
@@ -151,7 +152,7 @@
     getData() {
       getData(this.token)
         .then((data) => {
-          if (data.code == 0) {
+          if (data.code === 0) {
             data.dataMap.userData.resumedata = data.dataMap.userData.resumedata.slice(3, 4)
             this.userdata = data.dataMap.userData;
           } else {
@@ -185,7 +186,7 @@
     },
     intoResume() {
       if (this.isLogin) {
-        if (this.userdata.resumedata == 0) {
+        if (this.userdata.resumedata === 0) {
           this.$app.$def.router.push({
             uri: '/Resume'
           })

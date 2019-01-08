@@ -157,7 +157,7 @@
                     </div>
                     <div class="consult" onclick="consult">
                         <image src="img/consult_icon.png" class="consult_icon"></image>
-                        <text class="box_bottom_text">咨询</a>
+                        <text class="box_bottom_text">咨询</text>
                     </div>
                 </div>
                 <div class="box_bottom_line"></div>
@@ -186,7 +186,7 @@
         imgLogo,
         formatTime,
         genderLimit,
-        companyLogo
+        companyLogo,
     } from '../Common/utils/utils.js'
 
     export default {
@@ -248,6 +248,9 @@
                 }
             })
             this.getJobDetails()
+        },
+        onBackPress() {   //当用户点击返回实体按键、左上角返回菜单、调用返回API时触发该事件
+            this.$app.$def.refresh = false;
         },
         getJobDetails() {
             getJobDetails(this.JobOfflineId)

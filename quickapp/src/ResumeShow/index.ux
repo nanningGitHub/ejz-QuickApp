@@ -67,7 +67,7 @@
                 <div class="module_content">
                     <div class="module_item">
                         <text class="item_title">期望职位：</text>
-                        <div style="width:500px;display: flex;justify-content: flex-start;flex-wrap:wrap;">
+                        <div style="width:500px;display: flex;flex-wrap:wrap;">
                             <text class="item_text" for="{{userResume.jobIntent}}">{{$item}}</text>
                         </div>
 
@@ -107,7 +107,6 @@
     @import './less/index.less';
 </style>
 <script>
-    import storage from '@system.storage'
 
     import {
         showUserResume

@@ -1,8 +1,8 @@
 var fetch = require('@system.fetch')
 var storage = require('@system.storage')
 
-// var API_ROOT = 'http://openapi.ejzhi.com/'
-var API_ROOT = 'http://localtestapi.ejzhi.com/'
+var API_ROOT = 'http://openapi.ejzhi.com/'
+// var API_ROOT = 'http://localtestapi.ejzhi.com/'
 var headers = {}
 
 // function getAuth(next) {

@@ -4,7 +4,7 @@
             <div class="search_box">
                 <div class="search_bg">
                     <image class="search_icon" src="img/search_icon.png"></image>
-                    <input class="search_input" type="text" value="" placeholder="招聘考研英语老师" onchange="inputHotWord" />
+                    <input class="search_input" placeholder="招聘考研英语老师" onchange="inputHotWord" />
                 </div>
                 <text class="seach_btn" onclick="intoIndex">确定</text>
             </div>
@@ -36,6 +36,7 @@
         },
         onShow() {
             this.gethotWords()
+            this.$app.$def.refresh = true;
         },
         gethotWords() {
             gethotWords()

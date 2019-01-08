@@ -93,7 +93,7 @@
                     } else {
                         let jobOfflinePage = data.dataMap.jobOfflinePage;
                         let BeforeJobOfflinePage = this.jobOfflinePage;
-                        if (jobOfflinePage.dataList == '') {
+                        if (jobOfflinePage.dataList === '') {
                             this.hasMoreData = false
                         }
                         jobOfflinePage.dataList.map(item => {
@@ -107,7 +107,7 @@
                 })
                 .catch((err) => {
                     this.$app.$def.prompt.showToast({
-                        message: data
+                        message: "请检查您的网络"
                     })
                 })
         }

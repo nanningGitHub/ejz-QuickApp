@@ -1,96 +1,38 @@
 var storage = require('@system.storage')
-export function imgLogo(jobClass) {
-    switch (jobClass) {
-        case 2:
-            return "offline_practice.png";
-            break;
-        case 3:
-            return "offline_in_school.png";
-            break;
-        case 5:
-            return "offline_show.png";
-            break;
-        case 6:
-            return "offline_ceremony.png";
-            break;
-        case 7:
-            return "offline_model.png";
-            break;
-        case 8:
-            return "offline_host.png";
-            break;
-        case 9:
-            return "offline_security.png";
-            break;
-        case 11:
-            return "offline_tutor.png";
-            break;
-        case 12:
-            return "offline_assistant.png";
-            break;
-        case 14:
-            return "offline_dispatch.png";
-            break;
-        case 15:
-            return "offline_scan_code.png";
-            break;
-        case 16:
-            return "offline_promotion.png";
-            break;
-        case 17:
-            return "offline_sale.png";
-            break;
-        case 19:
-            return "offline_waiter.png";
-            break;
-        case 20:
-            return "offline_custom_service.png";
-            break;
-        case 21:
-            return "offline_room_service.png";
-            break;
-        case 22:
-            return "offline_express.png";
-            break;
-        case 24:
-            return "offline_translate.png";
-            break;
-        case 25:
-            return "offline_clerk.png";
-            break;
-        case 26:
-            return "offline_plan.png";
-            break;
-        case 27:
-            return "offline_editor.png";
-            break;
-        case 29:
-            return "offline_technology.png";
-            break;
-        case 30:
-            return "offline_product.png";
-            break;
-        case 31:
-            return "offline_operate.png";
-            break;
-        case 32:
-            return "offline_design.png";
-            break;
-        case 34:
-            return "offline_volunteer.png";
-            break;
-        case 35:
-            return "offline_casual.png";
-            break;
-        case 36:
-            return "offline_accounting.png";
-            break;
-        case 37:
-            return "offline_other.png";
-            break;
-    }
+const PhotoGallery = {
+    2: 'offline_practice.png',
+    3: 'offline_in_school.png',
+    5: 'offline_show.png',
+    6: 'offline_ceremony.png',
+    7: 'offline_model.png',
+    8: 'offline_host.png',
+    9: 'offline_security.png',
+    11: 'offline_tutor.png',
+    12: 'offline_assistant.png',
+    14: 'offline_dispatch.png',
+    15: 'offline_scan_code.png',
+    16: 'offline_promotion.png',
+    17: 'offline_sale.png',
+    19: 'offline_waiter.png',
+    20: 'offline_custom_service.png',
+    21: 'offline_room_service.png',
+    22: 'offline_express.png',
+    24: 'offline_translate.png',
+    25: 'offline_clerk.png',
+    26: 'offline_plan.png',
+    27: 'offline_editor.png',
+    29: 'offline_technology.png',
+    30: 'offline_product.png',
+    31: 'offline_operate.png',
+    32: 'offline_design.png',
+    34: 'offline_volunteer.png',
+    35: 'offline_casual.png',
+    36: 'offline_accounting.png',
+    37: 'offline_other.png'
 }
-
+export function imgLogo(jobClass) {
+    return PhotoGallery[jobClass] || ''
+}
 
 function formatNumber(n) {
     n = n.toString()
@@ -115,7 +57,7 @@ export function formatTime(number, format) {
 }
 
 export function genderLimit(genderLimit) {
-    return genderLimit == 1 ? "男" : genderLimit == 0 ? "女" : "不限"
+    return genderLimit === 1 ? "男" : genderLimit === 0 ? "女" : "不限"
 }
 
 

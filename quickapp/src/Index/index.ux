@@ -16,6 +16,11 @@
       </div>
       <!-- <joblist key="{{key}}" jobofflinepage="{{jobOfflinePage}}" searchkeytext="{{searchkey}}"></joblist> -->
       <list class="content" style="flex: 1;" onscrollbottom="loadMoreData">
+        <!-- 下拉刷新，type属性自定义命名为pulldown -->
+        <!-- <list-item type="pullDownData" class="load-more">
+          <progress type="circular"></progress>
+          <text>下拉刷新</text>
+        </list-item> -->
         <block for="{{jobOfflinePage.dataList}}">
           <list-item type="product" class="job_item" onclick="openJobDetails($item.id)">
             <image src='../Common/Component/Joblist/img/offline/{{$item.image}}' class="
@@ -71,7 +76,6 @@
 </style>
 <script>
   import {
-    getCity,
     getCityName
   } from '../Common/Api/index'
 
@@ -100,47 +104,50 @@
         jobOfflinePage: {
           dataList: []
         },
-        hasMoreData: 'true'
+        hasMoreData: 'true',
+        refresh: true,
+        hasDownData: false   //下拉刷新
       }
     },
     onShow() {
-      var that = this;
-      this.jobOfflinePage.dataList = [];
-      this.pageNo = 1;
-      this.hasMoreData = true;
-      this.$app.$def.storage.get({
-        key: 'searchkey',
-        success: function (data) {
-          if (!data) {
-
-          } else {
-            that.searchkey = JSON.parse(data).searchkey;
+      this.refresh = this.$app.$def.refresh;
+      if (this.refresh) {
+        var that = this;
+        this.jobOfflinePage.dataList = [];
+        this.pageNo = 1;
+        this.hasMoreData = true;
+        this.$app.$def.storage.get({
+          key: 'searchkey',
+          success: function (data) {
+            if (!data) {
+              return
+            } else {
+              that.searchkey = JSON.parse(data).searchkey;
+            }
+          },
+          fail: function (data, code) {
+            console.log(`handling fail, code = ${code}`)
           }
-        },
-        fail: function (data, code) {
-          console.log(`handling fail, code = ${code}`)
-        }
-      })
+        })
 
-
-      this.$app.$def.storage.get({
-        key: 'city',
-        success: function (data) {
-          if (!data) {
-            that.getJobList()
-            that.getgeolocation()
-          } else {
-            that.value = JSON.parse(data).cityname;
-            that.key = JSON.parse(data).cityid;
-            that.getJobList()
+        this.$app.$def.storage.get({
+          key: 'city',
+          success: function (data) {
+            if (!data) {
+              that.getJobList()
+              that.getgeolocation()
+            } else {
+              that.value = JSON.parse(data).cityname;
+              that.key = JSON.parse(data).cityid;
+              that.getJobList()
+            }
+          },
+          fail: function (data, code) {
+            console.log(`handling fail, code = ${code}`)
           }
-        },
-        fail: function (data, code) {
-          console.log(`handling fail, code = ${code}`)
-        }
-      })
+        })
 
-
+      }
     },
 
 
@@ -164,7 +171,7 @@
       getCityName(this.LngitudeAndLatitude)
         .then((data) => {
           if (data.code !== 0) {
-
+            return
           } else {
             this.$app.$def.storage.set({
               key: 'city',
@@ -213,6 +220,7 @@
             jobOfflinePage.dataList = [...BeforeJobOfflinePage.dataList, ...jobOfflinePage.dataList]
 
             this.jobOfflinePage = jobOfflinePage;
+            this.hasDownData = false;
           }
         })
         .catch((err) => {
@@ -222,7 +230,13 @@
         })
     },
     loadMoreData() {
-      this.pageNo++
+      this.pageNo++;
+      this.getJobList()
+    },
+    pullDownData() {
+      console.log(this.hasDownData)
+      this.hasDownData = true;
+      this.pageNo = 0;
       this.getJobList()
     },
     openJobDetails(JobOfflineId) {

@@ -124,7 +124,7 @@
         imgLogo,
         formatTime,
         genderLimit,
-        companyLogo
+        
     } from '../Common/utils/utils.js'
 
     export default {
@@ -187,13 +187,13 @@
                         jobOffline.jobTypeStr = jobOffline.jobTypeStr.split(',')[0];
                         this.jobOffline = jobOffline;
                         this.statusNum = data.dataMap.statusNum;
-                        if (statusNum == 0 || statusNum == '-1') {
+                        if (statusNum === 0 || statusNum === '-1') {
                             workFlow.step1.date = formatTime(workFlow.step1.date, 'Y-M-D h:m:s');
                             workFlow.step4.date = formatTime(workFlow.step4.date, 'Y-M-D h:m:s');
-                        } else if (statusNum == 2 || statusNum == 3 || statusNum == 4) {
+                        } else if (statusNum === 2 || statusNum === 3 || statusNum === 4) {
                             workFlow.step1.date = formatTime(workFlow.step1.date, 'Y-M-D h:m:s');
                             workFlow.step2.date = formatTime(workFlow.step2.date, 'Y-M-D h:m:s');
-                        } else if (statusNum == 1) {
+                        } else if (statusNum === 1) {
                             workFlow.step1.date = formatTime(workFlow.step1.date, 'Y-M-D h:m:s');
                         } else {
                             workFlow.step1.date = formatTime(workFlow.step1.date, 'Y-M-D h:m:s');

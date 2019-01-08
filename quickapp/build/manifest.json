@@ -1,9 +1,9 @@
 {
   "package": "com.application.ejianzhi",
-  "name": "e兼职求职招聘",
+  "name": "e兼职求职版",
   "versionName": "1.0.2",
-  "versionCode": "8",
-  "minPlatformVersion": "1000",
+  "versionCode": 10,
+  "minPlatformVersion": 1000,
   "icon": "/Common/Image/logo.png",
   "features": [
     {
@@ -46,8 +46,7 @@
     }
   ],
   "config": {
-    "logLevel": "debug",
-    "debug": false
+    "logLevel": "debug"
   },
   "router": {
     "entry": "Index",
@@ -146,5 +145,6 @@
         "menu": false
       }
     }
-  }
+  },
+  "debugable": true
 }
